@@ -84,7 +84,33 @@ function maker(json) {
  
     output.append(div);
     let first = true;
+    let heading = true;
+    let headingValues; 
+    let studentRegisterValues;
     json.forEach((el) => {
+     if (heading) heading = Object.keys(el);
+     else studentRegisterValues  = Object.keys(el);
+    })
+
+    div.style.gridTemplateColumns = `repeat(${keys.length} ,1fr)`;
+    
+    headingValues.forEach((heading) => {
+     if (first) { 
+      first = false; 
+      const ele = document.createElement('div');
+      ele.textContent = heading.toUpperCase();
+      ele.style.background = 'black';
+      ele.style.color = 'white';
+
+      const ele = document.createElement('div');
+      ele.style.border = '1px solid #ddd';
+      ele.textContent = el[key];
+      div.append(ele);
+     }
+    }
+
+ 
+   /* json.forEach((el) => {
         //console.log(ele);
         const keys = Object.keys(el);
         div.style.gridTemplateColumns = `repeat(${keys.length} ,1fr)`;
@@ -107,6 +133,6 @@ function maker(json) {
         })
         console.log(keys);
     })
- 
+ */
 }
  
