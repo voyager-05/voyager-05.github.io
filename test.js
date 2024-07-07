@@ -79,7 +79,7 @@ function init() {
                      data.push(row);
                  })
                  maker(data);
-             }
+              }
             }
             else
             {
