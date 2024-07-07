@@ -40,28 +40,28 @@ function init() {
     fetch(url)
         .then(res => res.text())
         .then(rep => {
-            console.log(rep)
             //console.log(rep);
             const jsData = JSON.parse(rep.substr(47).slice(0, -2));
             if (jsData.table.rows != 0)
             {
-                console.log(jsData);
-                const colz = [];
-                jsData.table.cols.forEach((heading) => {
-                    if (heading.label) {
-                        colz.push(heading.label.toLowerCase().replace(/\s/g, ''));
-                    }
-                })
-                jsData.table.rows.forEach((main) => {
-                    //console.log(main);
-                    const row = {};
-                    colz.forEach((ele, ind) => {
-                        //console.log(ele);
-                        row[ele] = (main.c[ind] != null) ? main.c[ind].v : '';
-                    })
-                    data.push(row);
-                })
-                maker(data);
+                transposeT(jsData);
+                // console.log(jsData);
+                // const colz = [];
+                // jsData.table.cols.forEach((heading) => {
+                //     if (heading.label) {
+                //         colz.push(heading.label.toLowerCase().replace(/\s/g, ''));
+                //     }
+                // })
+                // jsData.table.rows.forEach((main) => {
+                //     //console.log(main);
+                //     const row = {};
+                //     colz.forEach((ele, ind) => {
+                //         //console.log(ele);
+                //         row[ele] = (main.c[ind] != null) ? main.c[ind].v : '';
+                //     })
+                //     data.push(row);
+                // })
+                // maker(data);
             }
             else
             {
@@ -69,13 +69,50 @@ function init() {
             }
         })    
 }
- 
+
+function transposeT(data)
+{
+    const transposeData = [];
+    let i = 0;
+    let j = 0;
+
+    console.log("$$$$$$$");
+
+    const colz = [];
+    data.table.cols.forEach((heading) => {
+        if (heading.label) {
+            colz.push(heading.label.toLowerCase().replace(/\s/g, ''));
+            //console.log(heading.label.toLowerCase().replace(/\s/g, ''));
+            transposeData[i] = [];
+            transposeData[i][0] = (heading.label.toLowerCase().replace(/\s/g, ''));
+            i = i+1;
+        }
+    })
+
+    data.table.rows.forEach((main) => {
+        i = 0;
+        colz.forEach((ele, ind) => {
+            //console.log((main.c[ind] != null) ? main.c[ind].v : '');
+
+            transposeData[i][1] = (main.c[ind] != null) ? main.c[ind].v : '';
+            i = i+1;
+        })
+    })
+       
+    console.log(transposeData);
+    console.log("£££££££");
+
+    makerTranspose(transposeData);
+}
+
 function clearBox()
 {
     output.innerHTML = "";
 }
 
-function maker(json) {
+function makerTranspose(jsonTdata)
+{
+
     const div = document.createElement('div');
 
     output.innerHTML = "";
@@ -83,56 +120,81 @@ function maker(json) {
     div.style.display = 'grid';
  
     output.append(div);
-    let first = true;
-    let heading = true;
-    let headingValues; 
-    let studentRegisterValues;
-    json.forEach((el) => {
-     if (heading) heading = Object.keys(el);
-     else studentRegisterValues  = Object.keys(el);
+
+    jsonTdata.forEach((eachRow) => {
+        div.style.gridTemplateColumns = `repeat(${2} ,1fr)`;
+        //console.log(eachRow);
+        const eleLabel = document.createElement('div');
+        eleLabel.textContent = eachRow[0].toUpperCase();
+        eleLabel.style.background = 'black';
+        eleLabel.style.color = 'white';
+        div.append(eleLabel);
+
+        const eleValue = document.createElement('div');
+        eleValue.style.border = '1px solid #ddd';
+        eleValue.textContent = eachRow[1];
+        div.appendChild(eleValue);
     })
 
-    div.style.gridTemplateColumns = `repeat(${keys.length} ,1fr)`;
+    // let first = true;
+    // json.forEach((el) => {
+    //     //console.log(ele);
+    //     const keys = Object.keys(el);
+    //     div.style.gridTemplateColumns = `repeat(${keys.length} ,1fr)`;
+    //     if (first) {
+    //         first = false;
+    //         keys.forEach((heading) => {
+    //             const ele = document.createElement('div');
+    //             ele.textContent = heading.toUpperCase();
+    //             ele.style.background = 'black';
+    //             ele.style.color = 'white';
+    //             div.append(ele);
+    //         })
+    //     }
+    //     keys.forEach((key) => {
+    //         const ele = document.createElement('div');
+    //         ele.style.border = '1px solid #ddd';
+    //         ele.textContent = el[key];
+    //         div.append(ele);
+    //     })
+    //     console.log(keys);
+    // }) 
     
-    headingValues.forEach((heading) => {
-     if (first) { 
-      first = false; 
-      const ele = document.createElement('div');
-      ele.textContent = heading.toUpperCase();
-      ele.style.background = 'black';
-      ele.style.color = 'white';
+}
 
-      const ele = document.createElement('div');
-      ele.style.border = '1px solid #ddd';
-      ele.textContent = el[key];
-      div.append(ele);
-     }
-    }
+function maker(json) {
 
+    const div = document.createElement('div');
+
+    output.innerHTML = "";
+    output.innerHTML = "<br /><br />"
+    div.style.display = 'grid';
  
-   /* json.forEach((el) => {
-        //console.log(ele);
-        const keys = Object.keys(el);
-        div.style.gridTemplateColumns = `repeat(${keys.length} ,1fr)`;
-        if (first) {
-            first = false;
-            keys.forEach((heading) => {
-                const ele = document.createElement('div');
-                ele.textContent = heading.toUpperCase();
-                ele.style.background = 'black';
-                ele.style.color = 'white';
-                div.append(ele);
-            })
- 
-        }
-        keys.forEach((key) => {
-            const ele = document.createElement('div');
-            ele.style.border = '1px solid #ddd';
-            ele.textContent = el[key];
-            div.append(ele);
-        })
-        console.log(keys);
-    })
- */
+    output.append(div);
+
+    // let first = true;
+    // json.forEach((el) => {
+    //     //console.log(ele);
+    //     const keys = Object.keys(el);
+    //     div.style.gridTemplateColumns = `repeat(${keys.length} ,1fr)`;
+    //     if (first) {
+    //         first = false;
+    //         keys.forEach((heading) => {
+    //             const ele = document.createElement('div');
+    //             ele.textContent = heading.toUpperCase();
+    //             ele.style.background = 'black';
+    //             ele.style.color = 'white';
+    //             div.append(ele);
+    //         })
+    //     }
+    //     keys.forEach((key) => {
+    //         const ele = document.createElement('div');
+    //         ele.style.border = '1px solid #ddd';
+    //         ele.textContent = el[key];
+    //         div.append(ele);
+    //     })
+    //     console.log(keys);
+    // }) 
+
 }
  
