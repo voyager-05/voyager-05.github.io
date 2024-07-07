@@ -123,6 +123,7 @@ function makerTranspose(jsonTdata)
 
     jsonTdata.forEach((eachRow) => {
         div.style.gridTemplateColumns = `repeat(${2} ,1fr)`;
+        div.style.width = `250px`;
         //console.log(eachRow);
         const eleLabel = document.createElement('div');
         eleLabel.textContent = eachRow[0].toUpperCase();
