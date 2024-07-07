@@ -50,7 +50,8 @@ function init() {
              if (
               //platform.isMobile
               isMobile() 
-              //|| 
+              || 
+              isIOSSafari()
               //md.mobile()
               ) 
              {
@@ -86,6 +87,14 @@ function init() {
                 output.innerHTML = "<br /><br />NO SUCH ID FOUND!!!";
             }
         })    
+}
+
+function isIOSSafari()
+{
+  var ua = window.navigator.userAgent;
+  var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+  var webkit = !!ua.match(/WebKit/i);
+  return iOS && webkit && !ua.match(/CriOS/i); 
 }
 
 function isMobile() {
