@@ -1,5 +1,5 @@
 //import platform from 'platform' 
-import MobileDetect from 'mobile-detect';
+//import MobileDetect from 'mobile-detect';
 const sheetID='1JSjqrH2QGnOwns5hOsWQaYgppDRjWzmP05ZZCUqVVnY';
 const base = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?`;
 const sheetName = 'Attendance_Register';
