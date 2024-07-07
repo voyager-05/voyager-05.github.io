@@ -1,4 +1,4 @@
-import platform from 'platform';
+
 const sheetID='1JSjqrH2QGnOwns5hOsWQaYgppDRjWzmP05ZZCUqVVnY';
 const base = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?`;
 const sheetName = 'Attendance_Register';
@@ -45,8 +45,8 @@ function init() {
             const jsData = JSON.parse(rep.substr(47).slice(0, -2));
             if (jsData.table.rows != 0)
             {
-
-               if (platform.isMobile) {
+             if (isMobile())
+             {
                 transposeT(jsData); 
   console.log("Mobile device detected");
 } else {
@@ -76,7 +76,10 @@ function init() {
             }
         })    
 }
-
+function isMobile() {
+  const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+  return regex.test(navigator.userAgent);
+} 
 function transposeT(data)
 {
     const transposeData = [];
