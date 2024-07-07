@@ -48,9 +48,10 @@ function init() {
             {
              const md = new MobileDetect(navigator.userAgent);
              if 
-              //(platform.isMobile)
-              (isMobile()) || 
-              (md.mobile()) 
+              //platform.isMobile
+              isMobile() || 
+              md.mobile()
+              ) 
              {
                 transposeT(jsData); 
                 console.log("Mobile device detected");
