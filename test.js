@@ -48,9 +48,12 @@ function init() {
              if (isMobile())
              {
                 transposeT(jsData); 
-  console.log("Mobile device detected");
-} else {
-  console.log("Desktop device detected");
+                console.log("Mobile device detected");
+             } 
+             else 
+             {
+                
+                 console.log("Desktop device detected");
                 
                  console.log(jsData);
                  const colz = [];
@@ -76,10 +79,12 @@ function init() {
             }
         })    
 }
+
 function isMobile() {
   const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
   return regex.test(navigator.userAgent);
 } 
+
 function transposeT(data)
 {
     const transposeData = [];
@@ -183,29 +188,29 @@ function maker(json) {
  
     output.append(div);
 
-    // let first = true;
-    // json.forEach((el) => {
-    //     //console.log(ele);
-    //     const keys = Object.keys(el);
-    //     div.style.gridTemplateColumns = `repeat(${keys.length} ,1fr)`;
-    //     if (first) {
-    //         first = false;
-    //         keys.forEach((heading) => {
-    //             const ele = document.createElement('div');
-    //             ele.textContent = heading.toUpperCase();
-    //             ele.style.background = 'black';
-    //             ele.style.color = 'white';
-    //             div.append(ele);
-    //         })
-    //     }
-    //     keys.forEach((key) => {
-    //         const ele = document.createElement('div');
-    //         ele.style.border = '1px solid #ddd';
-    //         ele.textContent = el[key];
-    //         div.append(ele);
-    //     })
-    //     console.log(keys);
-    // }) 
+     let first = true;
+     json.forEach((el) => {
+         //console.log(ele);
+         const keys = Object.keys(el);
+         div.style.gridTemplateColumns = `repeat(${keys.length} ,1fr)`;
+         if (first) {
+             first = false;
+             keys.forEach((heading) => {
+                 const ele = document.createElement('div');
+                 ele.textContent = heading.toUpperCase();
+                 ele.style.background = 'black';
+                 ele.style.color = 'white';
+                 div.append(ele);
+             })
+         }
+         keys.forEach((key) => {
+             const ele = document.createElement('div');
+             ele.style.border = '1px solid #ddd';
+             ele.textContent = el[key];
+             div.append(ele);
+         })
+         console.log(keys);
+     }) 
 
 }
  
