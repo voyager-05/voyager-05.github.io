@@ -50,8 +50,8 @@ function init() {
              if (
               //platform.isMobile
               isMobile() 
-              //|| 
-              //isIOSSafari()
+              || 
+              isIOSSafari()
               //md.mobile()
               ) 
              {
