@@ -50,8 +50,8 @@ function init() {
              if (
               //platform.isMobile
               isMobile() 
-              || 
-              md.mobile()
+              //|| 
+              //md.mobile()
               ) 
              {
                 transposeT(jsData); 
