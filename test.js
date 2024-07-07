@@ -46,7 +46,7 @@ function init() {
             const jsData = JSON.parse(rep.substr(47).slice(0, -2));
             if (jsData.table.rows != 0)
             {
-             const md = new MobileDetect(navigator.userAgent);
+             //const md = new MobileDetect(navigator.userAgent);
              if (
               //platform.isMobile
               isMobile() 
