@@ -1,3 +1,4 @@
+import platform from 'platform';
 const sheetID='1JSjqrH2QGnOwns5hOsWQaYgppDRjWzmP05ZZCUqVVnY';
 const base = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?`;
 const sheetName = 'Attendance_Register';
@@ -44,24 +45,30 @@ function init() {
             const jsData = JSON.parse(rep.substr(47).slice(0, -2));
             if (jsData.table.rows != 0)
             {
-                transposeT(jsData);
-                // console.log(jsData);
-                // const colz = [];
-                // jsData.table.cols.forEach((heading) => {
-                //     if (heading.label) {
-                //         colz.push(heading.label.toLowerCase().replace(/\s/g, ''));
-                //     }
-                // })
-                // jsData.table.rows.forEach((main) => {
+
+               if (platform.isMobile) {
+                transposeT(jsData); 
+  console.log("Mobile device detected");
+} else {
+  console.log("Desktop device detected");
+                
+                 console.log(jsData);
+                 const colz = [];
+                 jsData.table.cols.forEach((heading) => {
+                     if (heading.label) {
+                         colz.push(heading.label.toLowerCase().replace(/\s/g, ''));
+                     }
+                 })
+                 jsData.table.rows.forEach((main) => {
                 //     //console.log(main);
-                //     const row = {};
-                //     colz.forEach((ele, ind) => {
-                //         //console.log(ele);
-                //         row[ele] = (main.c[ind] != null) ? main.c[ind].v : '';
-                //     })
-                //     data.push(row);
-                // })
-                // maker(data);
+                     const row = {};
+                     colz.forEach((ele, ind) => {
+                         //console.log(ele);
+                         row[ele] = (main.c[ind] != null) ? main.c[ind].v : '';
+                     })
+                     data.push(row);
+                 })
+                 maker(data);
             }
             else
             {
