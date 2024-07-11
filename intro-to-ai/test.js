@@ -92,11 +92,13 @@ function isIOSSafari()
   //var ua = window.navigator.userAgent;
   //var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
   //var webkit = !!ua.match(/WebKit/i);
-  return navigator.platform === 'iPad' || navigator.platform === 'iPhone' || navigator.platform === 'iPod'; //iOS && webkit && !ua.match(/CriOS/i);
+  return navigator.platform === 'iPad' || navigator.platform === 'iPhone' || navigator.platform === 'iPod'
+         || ('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
+   ; //iOS && webkit && !ua.match(/CriOS/i);
 }
 
 function isMobile() {
-  const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+  const regex = /Mobi|Android|webOS|BlackBerry|IEMobile|Opera Mini/i;
   return regex.test(navigator.userAgent);
 } 
 
