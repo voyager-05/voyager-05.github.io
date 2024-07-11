@@ -49,9 +49,9 @@ function init() {
               //platform.isMobile
               //isMobile() 
               //|| 
-              //isIOSSafari()
+              isIOSSafari()
               //md.mobile()
-('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
+//('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
                 //1 === 1            
               ) 
              {
