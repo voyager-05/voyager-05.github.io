@@ -47,10 +47,12 @@ function init() {
              //const md = new MobileDetect(navigator.userAgent);
              if (
               //platform.isMobile
-              isMobile() 
-              || 
-              isIOSSafari()
+              //isMobile() 
+              //|| 
+              //isIOSSafari()
               //md.mobile()
+('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
+              
               ) 
              {
                 transposeT(jsData); 
