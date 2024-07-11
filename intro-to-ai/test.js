@@ -47,9 +47,9 @@ function init() {
              //const md = new MobileDetect(navigator.userAgent);
              if (
               //platform.isMobile
-              //isMobile() 
+              isMobile() 
               //|| 
-              isIOSSafari()
+              //isIOSSafari()
               //md.mobile()
 //('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
                 //1 === 1            
@@ -89,20 +89,20 @@ function init() {
         })    
 }
 
-function isIOSSafari()
+function isMobile()
 {
   //var ua = window.navigator.userAgent;
   //var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
   //var webkit = !!ua.match(/WebKit/i);
-  return navigator.platform === 'iPad' || navigator.platform === 'iPhone' || navigator.platform === 'iPod'
-         || ('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
+  return navigator.platform === 'iPad' || navigator.platform === 'iPhone' || navigator.platform === 'iPod' ||
+         navigator.platform === 'android' || ('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
    ; //iOS && webkit && !ua.match(/CriOS/i);
 }
 
-function isMobile() {
-  const regex = /Mobi|Android|webOS|BlackBerry|IEMobile|Opera Mini/i;
-  return regex.test(navigator.userAgent);
-} 
+//function isMobile() {
+//  const regex = /Mobi|Android|webOS|BlackBerry|IEMobile|Opera Mini/i;
+//  return regex.test(navigator.userAgent);
+//} 
 
 function transposeT(data)
 {
