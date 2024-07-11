@@ -52,7 +52,7 @@ function init() {
               //isIOSSafari()
               //md.mobile()
 //('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
-                true            
+                1 === 1            
               ) 
              {
                 transposeT(jsData); 
