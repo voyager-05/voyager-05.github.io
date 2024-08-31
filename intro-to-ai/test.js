@@ -12,7 +12,7 @@ function init() {
 
     if (document.getElementById("sID").value.length == 0)
     {
-        console.log("XXXXXXXXX");
+        console.log("EEEEEEEEEEEE");
         return;
     }
 
@@ -163,7 +163,7 @@ function makerTranspose(jsonTdata)
         eleLabel.textContent = eachRow[0].toUpperCase();
         eleLabel.style.background = 'black';
         eleLabel.style.color = 'white';
-        eleLabel.style.justifyContent = 'center'
+        eleLabel.style.justifyContent = 'center';
         div.append(eleLabel);
 
         const eleValue = document.createElement('div');
@@ -195,7 +195,7 @@ function maker(json) {
                  ele.textContent = heading.toUpperCase();
                  ele.style.background = 'black';
                  ele.style.color = 'white';
-                 ele.style.justifyContent= 'center'
+                 ele.style.justifyContent= 'center';
                  div.append(ele);
              })
          }
