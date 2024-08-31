@@ -163,6 +163,7 @@ function makerTranspose(jsonTdata)
         eleLabel.textContent = eachRow[0].toUpperCase();
         eleLabel.style.background = 'black';
         eleLabel.style.color = 'white';
+        eleLabel.style.display = "block"
         div.append(eleLabel);
 
         const eleValue = document.createElement('div');
@@ -194,6 +195,7 @@ function maker(json) {
                  ele.textContent = heading.toUpperCase();
                  ele.style.background = 'black';
                  ele.style.color = 'white';
+                 ele.style.display = "block"
                  div.append(ele);
              })
          }
