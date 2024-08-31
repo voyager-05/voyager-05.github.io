@@ -12,7 +12,7 @@ function init() {
 
     if (document.getElementById("sID").value.length == 0)
     {
-        console.log("EEEEEEEEEEEE");
+        console.log("QQQQQQQQQQQQQQQ");
         return;
     }
 
