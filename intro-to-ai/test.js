@@ -12,7 +12,7 @@ function init() {
 
     if (document.getElementById("sID").value.length == 0)
     {
-        console.log("QQQQQQQQQQQQQQQ");
+        console.log("RRRRRRRRRR");
         return;
     }
 
@@ -152,6 +152,7 @@ function makerTranspose(jsonTdata)
     output.innerHTML = "";
     output.innerHTML = "<br /><br />"
     div.style.display = 'grid';
+    div.style.justifyContent = 'center';
  
     output.append(div);
 
@@ -163,11 +164,11 @@ function makerTranspose(jsonTdata)
         eleLabel.textContent = eachRow[0].toUpperCase();
         eleLabel.style.background = 'black';
         eleLabel.style.color = 'white';
-        eleLabel.style.justifyContent = "center";
         div.append(eleLabel);
 
         const eleValue = document.createElement('div');
         eleValue.style.border = '1px solid #ddd';
+        eleValue.style.justifyContent = 'center';
         eleValue.textContent = eachRow[1];
         div.appendChild(eleValue);
     })    
@@ -180,6 +181,7 @@ function maker(json) {
     output.innerHTML = "";
     output.innerHTML = "<br /><br />"
     div.style.display = 'grid';
+    div.style.justifyContent = 'center';
  
     output.append(div);
 
@@ -195,13 +197,14 @@ function maker(json) {
                  ele.textContent = heading.toUpperCase();
                  ele.style.background = 'black';
                  ele.style.color = 'white';
-                 ele.style.justifyContent = "center";
+                 ele.style.justifyContent = 'center';
                  div.append(ele);
              })
          }
          keys.forEach((key) => {
              const ele = document.createElement('div');
              ele.style.border = '1px solid #ddd';
+             ele.style.justifyContent = 'center';
              ele.textContent = el[key];
              div.append(ele);
          })
