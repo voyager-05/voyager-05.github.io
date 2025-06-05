@@ -8,6 +8,7 @@ const output = document.querySelector('.output');
  
 function init() {
     console.log('ready');
+    console.log(sheetName);
     clearBox();
 
     if (document.getElementById("sID").value.length == 0)
