@@ -1,6 +1,6 @@
 const sheetID='1JSjqrH2QGnOwns5hOsWQaYgppDRjWzmP05ZZCUqVVnY';
 const base = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?`;
-const sheetName = '25V - DSA Attendance_Register';
+const sheetName = '25H - DSA Attendance_Register';
 
 document.addEventListener('DOMContentLoaded', init);
  
