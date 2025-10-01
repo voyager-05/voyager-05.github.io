@@ -734,7 +734,7 @@
 										' width: ' + gridSizeX + 'px;' +
 										' height: ' + gridSizeY + 'px;">');
 			document.write('<img alt="This is the grid on which tromino tiles should be placed."' +
-								'src="images/theGrid.gif" style="width: ' + gridSizeX + 'px; height: ' + gridSizeY + 'px;">');
+								'src="https://nstarr.people.amherst.edu/trom/puzzle-8by8/images/theGrid.gif" style="width: ' + gridSizeX + 'px; height: ' + gridSizeY + 'px;">');
 			document.write('</div>');
 
 			var idRoot = ['nw', 'ne', 'se', 'sw'];
@@ -796,7 +796,7 @@
 					var id = idRootNow + (t < 10 ? '0' + t : t);
 
 					document.write('<div id="' + id + '" class="draggable" style="top: ' + tileBaseTopNow + trominoBaseStyle + '">');
-					document.write('<img src="images/tromino' + id + '.gif" usemap="#' + id + 'Map"' + imageStyle + ' alt="">');
+					document.write('<img src="https://nstarr.people.amherst.edu/trom/puzzle-8by8/images/tromino' + id + '.gif" usemap="#' + id + 'Map"' + imageStyle + ' alt="">');
 					document.write('<map name="' + id + 'Map">');
 					document.write(areaTransparent);
 					document.write(areaTromino);
@@ -821,7 +821,7 @@
 
 			document.write('<div id="square"  class="draggable"' +
 				'style="left: ' + squareBaseLeft + '; top: ' + squareBaseTop + '; width: ' + squareSize + 'px; height: ' + squareSize + 'px;">\n');
-			document.write('<img alt="" src="images/square.gif"  usemap="#squareMap" style="width: ' + squareSize + 'px; height: ' + squareSize + 'px;">\n');
+			document.write('<img alt="" src="https://nstarr.people.amherst.edu/trom/puzzle-8by8/images/square.gif"  usemap="#squareMap" style="width: ' + squareSize + 'px; height: ' + squareSize + 'px;">\n');
 			document.write('<map name="squareMap">');
 			document.write('<area class="tile" shape="rect" coords="0,0,' + (squareSize - 1) + ',' + (squareSize - 1) + '" alt="" nohref>\n');
 			document.write('</map>\n');
