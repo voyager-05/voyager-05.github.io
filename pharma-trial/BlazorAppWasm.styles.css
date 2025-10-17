@@ -51,7 +51,7 @@ svg[b-ygoalvtn3e] {
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    background: #0d1117; /* optional dark backdrop */
+    background: #DFDBDA; /* optional dark backdrop */
 }
 
 /* Keep the chart square and responsive */
@@ -72,7 +72,7 @@ svg[b-ygoalvtn3e] {
 .hub-title text[b-ygoalvtn3e]{
   text-anchor: middle;
   dominant-baseline: middle;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: .5px;
 }
 
@@ -108,4 +108,49 @@ svg[b-ygoalvtn3e] {
 .band-label text[b-ygoalvtn3e] {
     font-weight: 600;
     text-shadow: 0 1px 2px rgba(0,0,0,.35);
+}
+.badge-text[b-ygoalvtn3e] {
+    font-size: 6px;
+    font-weight: 600;
+    fill: rgba(0,0,0,.25);
+}
+
+.badge circle[b-ygoalvtn3e] {
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,.25));
+}
+
+
+.video-overlay[b-ygoalvtn3e] {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 100px;
+    pointer-events: none;
+}
+
+.video-overlay video[b-ygoalvtn3e] {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.center-video[b-ygoalvtn3e] {
+    position: absolute;
+    left: 50%;
+    top: 38%;
+    transform: translate(-50%, -100%);
+    width: 180px;
+    height: 100px;
+    object-fit: contain;
+    background-color: transparent; /* not needed, but harmless */
+    pointer-events: none;
+}
+
+/* Simple fade-in effect */
+@keyframes fadeInVideo-b-ygoalvtn3e {
+    to {
+        opacity: 1;
+    }
 }
