@@ -6,6 +6,7 @@ let el,
 
 function init(mode) {
   let version = '0.936'
+  // https://www.mathsisfun.com/numbers/images/hanoi.js
 
   this.mode = typeof mode !== 'undefined' ? mode : 'asc'
 
@@ -74,6 +75,16 @@ s += wrap({cls: 'copyrt',  style: 'left:5px; bottom:3px'}, '&copy; 2025 Rod Pier
   g = el.getContext('2d')
   g.setTransform(ratio, 0, 0, ratio, 0, 0)
 
+  // shapes = []
+
+  //cellWidth = 40;
+  //spacing = 10;
+
+  // my.drag.q = false;
+  // my.drag.n = -1;
+  // my.drag.hold.x = 0;
+  // my.drag.hold.y = 0;
+
   my.poles = []
   this.moveN = 0
 
@@ -86,6 +97,8 @@ s += wrap({cls: 'copyrt',  style: 'left:5px; bottom:3px'}, '&copy; 2025 Rod Pier
   el.addEventListener('touchstart', touchStart, false)
   el.addEventListener('mousemove', doPointer, false)
 
+  //moves = [];
+  //solveIt();
 }
 
 function logOpen() {
@@ -118,6 +131,7 @@ function chgNumPts(n) {
   document.getElementById('num').innerHTML = n
   my.diskTot = n
   gameNew()
+  //console.log("this.modePts", this.modePts);
 }
 
 function drawPoles() {
@@ -133,7 +147,9 @@ function drawPole(x, y) {
   g.strokeStyle = 'blue'
   g.fillStyle = '#d43'
   g.beginPath()
+  //g.rect(x - 3, y - ht, 6, ht);
   g.roundRect(x - 3, y - ht, 6, ht, 6, 3)
+  //g.rect(x - wd / 2, y - 3, wd, 6);
   g.roundRect(x - wd / 2, y - 3, wd, 8, 4)
   g.closePath()
   g.stroke()
@@ -144,6 +160,7 @@ function gameNew() {
   moveNChg(0)
   stopAnim()
 
+  // setup poles: pole 0 has all disks
   let p0 = []
   for (let i = my.diskTot - 1; i >= 0; i--) {
     p0.push(i)
@@ -176,6 +193,7 @@ function disksMake() {
   for (let i = 0; i < my.diskTot; i++) {
     let disk = new Disk(0, 0, i)
     div.appendChild(disk.div)
+    //disk.moveMe()
 
     my.disks.push(disk)
   }
@@ -191,17 +209,24 @@ function disksPlace(fastQ = true) {
     //my.poles[disk.pole].unshift(i);
     disk.x = my.poleX + my.poleDist * disk.pole - disk.wd / 2
     disk.y = my.poleY - disk.polePos * my.diskHt - disk.ht / 5
+    //   x: my.poleX + i * my.poleDist - w / 2,
+    //   y: my.poleY - j * my.diskHt - my.diskHt - 3,
 
     disk.moveMe(fastQ)
   }
 }
 
 function disksToPoles() {
-  my.poles = [[], [], []] 
+  // place disks on poles from bottom up
+  // redo poles
+  my.poles = [[], [], []] // it is the *shapes* that know what pole they are on, so need to recreate poles each time
+  // for (let i = 0; i < my.disks.length; i++) {
   for (let i = my.disks.length - 1; i >= 0; i--) {
     let disk = my.disks[i]
+    // my.poles[disk.pole].unshift(i);  // place in stack
     my.poles[disk.pole].unshift(i) // place in stack
     disk.polePos = my.poles[disk.pole].length
+    //console.log('disk.polePos', disk.polePos)
   }
 }
 
@@ -214,6 +239,7 @@ function touchStart(evt) {
 }
 
 function touchMove(evt) {
+  //Assume only one touch/only process one touch even if there's more
   let touch = evt.targetTouches[0]
   evt.clientX = touch.clientX
   evt.clientY = touch.clientY
@@ -236,9 +262,11 @@ function touchEnd(evt) {
 }
 
 function doPointer(e) {
+  //document.body.style.cursor = "default";
   let bRect = el.getBoundingClientRect()
   let mouseX = (e.clientX - bRect.left) * (el.width / ratio / bRect.width)
   let mouseY = (e.clientY - bRect.top) * (el.height / ratio / bRect.height)
+  //console.log( "domousemove: (" + mouseX + ","  + e.clientX + "," + e.clientY + ",  " + bRect.left + "," + bRect.top  + "," + el.width  + ")" );
   let inQ = false
   for (let i = 0; i < my.disks.length; i++) {
     let disk = my.disks[i]
@@ -256,24 +284,35 @@ function doPointer(e) {
 }
 
 function mouseDown(evt) {
+  // http://rectangleworld.com/demos/Simplemy.drag.q/Simplemy.drag.q
   let i
- 
+  //We are going to pay attention to the layering order of the objects so that if a mouse down occurs over more than object,
+  //only the topmost one will be dragged.
+  //let highestIndex = -1;
+
   //getting mouse position correctly, being mindful of resizing that may have occured in the browser:
   let bRect = el.getBoundingClientRect()
   let mouseX = (evt.clientX - bRect.left) * (el.width / ratio / bRect.width)
   let mouseY = (evt.clientY - bRect.top) * (el.height / ratio / bRect.height)
 
+  //find which shape was clicked
   for (i = 0; i < my.disks.length; i++) {
     let shape = my.disks[i]
- 
+    // console.log('mouseDown', my.drag, shape)
+    // console.log('hitTest', shape.x, shape.y, mouseX, mouseY, shape.wd, shape.ht, hitTest(shape, mouseX, mouseY))
+
     if (hitTest(shape, mouseX, mouseY)) {
       if (topDiskQ(i)) {
         my.dragStt = performance.now()
         my.drag.q = true
+        //if (i > highestIndex) {
+        //We will pay attention to the point on the object where the mouse is "holding" the object:
         my.drag.hold.x = mouseX - shape.x
         my.drag.hold.y = mouseY - shape.y
+        //highestIndex = i;
         my.drag.n = i
         my.disks[my.drag.n].hilite(true)
+        //}
       }
     }
   }
@@ -294,12 +333,13 @@ function mouseDown(evt) {
     window.addEventListener('mouseup', mouseUp, false)
   }
 
+  //code below prevents the mouse down from having an effect on the main browser window:
   if (evt.preventDefault) {
     evt.preventDefault()
-  } 
+  } //standard
   else if (evt.returnValue) {
     evt.returnValue = false
-  } 
+  } //older IE
   return false
 }
 
@@ -323,6 +363,8 @@ function mouseMove(evt) {
   let mouseX = (evt.clientX - bRect.left) * (el.width / ratio / bRect.width)
   let mouseY = (evt.clientY - bRect.top) * (el.height / ratio / bRect.height)
 
+  //clamp x and y positions to prevent object from my.drag.q outside of canvas
+  //let minX = 0;
   let posX = mouseX - my.drag.hold.x
   let posY = mouseY - my.drag.hold.y
 
@@ -333,6 +375,7 @@ function mouseMove(evt) {
 }
 
 function topDiskQ(n) {
+  // is it top disk?
   for (let i = 0; i < my.poles.length; i++) {
     let pole = my.poles[i]
     if (pole.length > 0) {
@@ -343,6 +386,7 @@ function topDiskQ(n) {
 }
 
 function hitTest(shape, mx, my) {
+  //a "hit" will be registered if the distance away from the center is less than the radius of the circular object
   if (mx < shape.x) return false
   if (my < shape.y) return false
 
@@ -353,12 +397,16 @@ function hitTest(shape, mx, my) {
 }
 
 function doDrop(dropNo) {
+  // do we move dragged item?
+
+  //console.log("doDrop", dropNo);
   let disk = my.disks[dropNo]
   disk.hilite(false)
 
   let p = Math.round((disk.x - my.poleX) / my.poleDist)
   p = Math.max(0, Math.min(p, 2))
   if (p != disk.pole) {
+    // drop on different pole
 
     let okQ = false
     let pole = my.poles[p]
@@ -387,6 +435,7 @@ function doDrop(dropNo) {
 }
 
 function successTest() {
+  //console.log("successTest", isSuccess());
   document.getElementById('success').innerHTML = ''
   if (isSuccess()) {
     successDo()
@@ -394,6 +443,7 @@ function successTest() {
 }
 
 function isSuccess() {
+  // last pole
   let p2 = my.poles[2]
   console.log('isSuccess p2', p2)
   if (p2.length != my.diskTot) return false
@@ -419,6 +469,8 @@ function moveNChg(n) {
 }
 
 
+/*********/
+
 function solveIt() {
   gameNew()
 
@@ -426,6 +478,15 @@ function solveIt() {
 
   hanoi(0, 2, 1, my.diskTot)
   console.log('solveIt', my.moves.join(':'))
+
+  //disksMake()
+
+  // let p0 = [];
+  // for (let i = my.diskTot - 1; i >= 0; i--) {
+  //   p0.push(i);
+  // }
+  // my.poles = [p0, [], []];
+  //console.log("my.poles",my.poles.join(' : '));
 
   my.frame = 25
   my.moveNo = 0
@@ -444,11 +505,13 @@ function solveAnim() {
 
   if (my.frame > 60) {
     my.frame = 0
+    //console.log("solveAnim");
     let move = my.moves[my.moveNo]
 
     let poleFr = my.poles[move[0]]
     let diskFr = poleFr[0]
     my.disks[diskFr].pole = move[1]
+    //console.log('anim', poleFr, diskFr, my.disks[diskFr])
 
     disksToPoles()
     disksPlace(false)
@@ -465,12 +528,17 @@ function hanoi(from, to, buf, nmv) {
   if (nmv > 1) {
     hanoi(from, buf, to, nmv - 1)
     my.moves.push([from, to])
+    //mvfrom[mv] = from;
+    //mvto[mv++] = to;
     hanoi(buf, to, from, nmv - 1)
   } else {
     my.moves.push([from, to])
+    //mvfrom[mv] = from;
+    //mvto[mv++] = to;
   }
 }
 
+/*************************************************************************************************************/
 class Pop {
   constructor(id, yesStr, yesFunc, noStr, noFunc) {
     this.id = id
@@ -484,9 +552,11 @@ class Pop {
       yesStr = '&#x2714;'
       yesBtn.style = 'font: 22px Arial;'
     }
-    yesBtn.innerHTML = yesStr 
+    yesBtn.innerHTML = yesStr //"New Game";
     yesBtn.classList.add('togglebtn')
-    yesBtn.onclick = this.yes.bind(this) 
+    yesBtn.onclick = this.yes.bind(this) // Bind creates a new function that will have "this" set to the first parameter passed to bind()
+    //s += '<button onclick="editYes()" style="z-index:2; font: 22px Arial;" class="togglebtn" ></button>';
+    //s += '<button onclick="editNo()" style="z-index:2; font: 22px Arial;" class="togglebtn" >&#x2718;</button>';
     if (false) {
       let noBtn = document.createElement('button')
       this.div.appendChild(noBtn)
@@ -507,7 +577,9 @@ class Pop {
     div.style.transitionDuration = '0.3s'
     div.style.opacity = 1
     div.style.zIndex = 12
+    //pop.style.left = (w - 380) / 2 + 'px';
     div.style.left = 10 + 'px'
+    //console.log("optpop", this.div);
   }
   yes(me) {
     console.log('me', me)
@@ -518,6 +590,7 @@ class Pop {
     if (typeof this.yesFunc === 'function') {
       this.yesFunc()
     }
+    //gameNew();
   }
   no() {
     console.log('Pop no')
@@ -544,6 +617,8 @@ class Disk {
     this.ht = my.diskHt
     this.pad = 4
     this.pole = 0
+    //this.rad = 9;
+    //this.color = "rgb(" + 0 + "," + 0 + "," + 255 + ")";
     this.hiliteQ = false
     let ratio = 2
 
@@ -553,9 +628,11 @@ class Disk {
     this.div.style.transitionDuration = '0s'
 
     document.getElementById('disks').appendChild(this.div)
+    // Foreground for face, and Background for sides looks realistic when blocks next to each other
     this.elFG = document.createElement('canvas')
     this.elFG.style.position = 'absolute'
     this.div.appendChild(this.elFG)
+    //this.elFG.style.border = "1px solid black";
     let canWd = this.wd + this.pad * 2
     let canHt = this.ht + this.pad * 2
     this.elFG.width = canWd * ratio
@@ -586,11 +663,14 @@ class Disk {
     this.elBG.parentNode.removeChild(this.elBG)
   }
   moveMe(fastQ = true) {
+    //let fastQ = typeof fastQ !== 'undefined' ? fastQ : true;
+    //console.log("moveMe",this,fastQ);
     if (fastQ) {
       this.div.style.transitionDuration = '0s'
     } else {
       this.div.style.transitionDuration = '0.8s'
     }
+    // console.log("moveMe",this.x,this.y);
     this.div.style.left = this.x - this.pad + 'px'
     this.div.style.top = this.y - this.pad + 'px'
   }
@@ -598,7 +678,12 @@ class Disk {
     console.log('drawMe', this.hiliteQ)
     let g = this.gFG
     g.clearRect(0, 0, g.canvas.width, g.canvas.height)
+    //this.gFG.clearRect(0, 0, this.elFG.width, this.elFG.height);
+    //this.gBG.clearRect(0, 0, this.elBG.width, this.elBG.height);
 
+    //let txtClr = my.txtclrs[Math.min(11, this.n)];
+
+    /**/
     if (this.hiliteQ) {
       console.log('hilite', this)
       g.strokeStyle = 'rgba(150, 150, 33, 1)'
@@ -633,11 +718,13 @@ function hex2rgba(hex, opacity) {
 CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
   if (w < 2 * r) r = w / 2
   if (h < 2 * r) r = h / 2
+  //this.beginPath();
   this.moveTo(x + r, y)
   this.arcTo(x + w, y, x + w, y + h, r)
   this.arcTo(x + w, y + h, x, y + h, r)
   this.arcTo(x, y + h, x, y, r)
   this.arcTo(x, y, x + w, y, r)
+  //this.closePath();
   return this
 }
 
@@ -674,7 +761,7 @@ class Mouse {
     my.moose.onMouseUp(ev)
   }
   onMouseDown(ev) {
-    document.getElementById('angA').focus() 
+    document.getElementById('angA').focus() // KLUDGE use mousedown for signal to focus on this app for key-click purposes
     let mouse = this.mousePos(ev)
     console.log('moose doon', mouse.x, mouse.y, my.shapes)
 
@@ -687,6 +774,7 @@ class Mouse {
       my.drag.holdX = mouse.x - pt.x
       my.drag.holdY = mouse.y - pt.y
 
+      //dragsAdd(pt)
       my.shapes[my.drag.n].shadQ = true
       my.drag.onQ = true
     }
@@ -699,11 +787,22 @@ class Mouse {
       let shape = my.shapes[my.drag.n]
       let pt = { x: mouse.x - my.drag.holdX, y: mouse.y - my.drag.holdY }
 
+      //clamp x and y positions to prevent object from dragging outside of canvas
+      //pt.x = Math.max(-my.wd/2, Math.min(pt.x, my.wd - shape.wd+my.wd/2))
+      //pt.y = Math.max(-50, Math.min(pt.y, my.ht - shape.ht+50))
+
       shape.x = pt.x
       shape.y = pt.y
       shape.div.style.left = pt.x + 'px'
       shape.div.style.top = pt.y + 'px'
+      // shape.shadQ = true
+      //           if (shape.shadQ) {
       shape.div.style.filter = 'drop-shadow(3px 3px 3px #229)'
+      // } else {
+      // shape.div.style.filter = 'none'
+      // }
+
+      //shapesCheck()
     } else {
       if (this.hitFind(my.shapes, mouse) >= 0) {
         document.body.style.cursor = 'pointer'
@@ -745,11 +844,14 @@ class Mouse {
   }
 }
 
+// style4:style4theme
 
 my.theme = localStorage.getItem('theme')
 my.lineClr = my.theme == 'dark' ? 'white' : 'black'
 
 my.imgHome = (document.domain == 'localhost' ? '/mathsisfun' : '') + '/numbers/images/'
+//s += '<img src="'+ my.imgHome +'bg1.svg">'
+//el.style.cursor = 'url('+my.imgHome+'pencil.svg), crosshair'
 
 my.opts = { name: 'user' }
 function optGet(name) {
@@ -773,6 +875,7 @@ function getJSQueryVar(varName, defaultVal) {
   let query = bits[1]
   console.log('query: ', query)
 
+  // let query = window.location.search.substring(1);
   let vars = query.split('&')
   for (let i = 0; i < vars.length; i++) {
     let pair = vars[i].split('=')
@@ -802,7 +905,7 @@ function docInsert(s) {
   let div = document.createElement('div')
   div.innerHTML = s
   let script = document.currentScript
-  script.parentElement.insertBefore(div, script) 
+  script.parentElement.insertBefore(div, script) // Add the newly-created div before script location
 }
 
 class Can {
@@ -813,6 +916,7 @@ class Can {
     this.ratio = ratio
 
     let el = document.getElementById(id)
+    //el.style.border = "1px solid black";
 
     el.width = wd * ratio
     el.style.width = wd + 'px'
@@ -841,6 +945,7 @@ function wrap({ id = '', cls = '', pos = 'rel', style = '', txt = '', tag = 'div
 
   txt += mores.join('')
 
+  //if (cls.includes('input')) tag = 'inp'   // NB: remove? use tag instead?, but cls:'input'looks good with cls:'output'
 
   s +=
     {
@@ -926,6 +1031,9 @@ function wrap({ id = '', cls = '', pos = 'rel', style = '', txt = '', tag = 'div
 
   s += '\n'
 
+  //console.log('wrap', s + '\n')
+
   return s.trim()
+  //return s
 }
 init()
