@@ -184,7 +184,7 @@ svg[b-ygoalvtn3e] {
 }
 
 .touch-rotate[b-ygoalvtn3e] {
-    touch-action: none; /* block browser zoom/scroll on this element */
+    /*touch-action: none;*/ /* block browser zoom/scroll on this element */
     overscroll-behavior: contain; /* stop page bounce/scroll chaining */
 }
 /* /Index.razor.rz.scp.css */
