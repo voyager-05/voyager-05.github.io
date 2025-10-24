@@ -1,51 +1,44 @@
-// wwwroot/rotation.js
-export function attachTwoFingerRotate(svgEl, dotNetRef){
-  const pointers = new Map();
+﻿export function attachTwoFingerRotate(svgEl, dotNetRef) {
+    const pointers = new Map();
+    let prevAngle = null;
 
-  let prevAngle = null;
+    const angleBetween = (a, b) =>
+        Math.atan2(b.clientY - a.clientY, b.clientX - a.clientX) * 180 / Math.PI;
 
-  function angleBetween(p1, p2){
-    const dx = p2.clientX - p1.clientX;
-    const dy = p2.clientY - p1.clientY;
-    return Math.atan2(dy, dx) * 180 / Math.PI; // degrees
-  }
-
-  function onPointerDown(e){
-    svgEl.setPointerCapture?.(e.pointerId);
-    pointers.set(e.pointerId, e);
-    if(pointers.size === 2){
-      const [a,b] = [...pointers.values()];
-      prevAngle = angleBetween(a,b);
+    function onPointerDown(e) {
+        svgEl.setPointerCapture?.(e.pointerId);
+        pointers.set(e.pointerId, e);
+        if (pointers.size === 2) {
+            const [p1, p2] = [...pointers.values()];
+            prevAngle = angleBetween(p1, p2);
+        }
     }
-  }
 
-  function onPointerMove(e){
-    if(!pointers.has(e.pointerId)) return;
-    pointers.set(e.pointerId, e);
+    function onPointerMove(e) {
+        if (!pointers.has(e.pointerId)) return;
+        pointers.set(e.pointerId, e);
+        if (pointers.size === 2) {
+            const [p1, p2] = [...pointers.values()];
+            const angle = angleBetween(p1, p2);
+            if (prevAngle != null) {
+                let delta = angle - prevAngle;
+                if (delta > 180) delta -= 360;
+                if (delta < -180) delta += 360;
 
-    if(pointers.size === 2){
-      const [a,b] = [...pointers.values()];
-      const ang = angleBetween(a,b);
-      if(prevAngle != null){
-        let delta = ang - prevAngle;
-        // normalize to (-180,180] to avoid big jumps
-        if (delta > 180) delta -= 360;
-        if (delta <= -180) delta += 360;
-        // call into .NET
-        dotNetRef.invokeMethodAsync('RotateBy', delta);
-      }
-      prevAngle = ang;
+                //This is the call to your .NET method:
+                dotNetRef.invokeMethodAsync('RotateBy', delta);
+            }
+            prevAngle = angle;
+        }
     }
-  }
 
-  function onPointerUpOrCancel(e){
-    pointers.delete(e.pointerId);
-    if(pointers.size < 2) prevAngle = null;
-  }
+    function onPointerUp(e) {
+        pointers.delete(e.pointerId);
+        if (pointers.size < 2) prevAngle = null;
+    }
 
-  // Use pointer events (works for touch + pen + mouse)
-  svgEl.addEventListener('pointerdown', onPointerDown);
-  svgEl.addEventListener('pointermove', onPointerMove);
-  svgEl.addEventListener('pointerup', onPointerUpOrCancel);
-  svgEl.addEventListener('pointercancel', onPointerUpOrCancel);
+    svgEl.addEventListener('pointerdown', onPointerDown);
+    svgEl.addEventListener('pointermove', onPointerMove);
+    svgEl.addEventListener('pointerup', onPointerUp);
+    svgEl.addEventListener('pointercancel', onPointerUp);
 }
