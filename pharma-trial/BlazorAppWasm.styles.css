@@ -159,3 +159,26 @@ svg[b-ygoalvtn3e] {
         opacity: 1;
     }
 }
+
+@keyframes seg-reveal-b-ygoalvtn3e {
+    0% {
+        opacity: 0;
+        transform: scale(0.94);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.03);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.slice-group.reveal[b-ygoalvtn3e] {
+    opacity: 0;
+    animation: seg-reveal-b-ygoalvtn3e var(--revDur,600ms) cubic-bezier(.2,.8,.3,1) forwards;
+    animation-delay: var(--revDelay,0ms);
+}
