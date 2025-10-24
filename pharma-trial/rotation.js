@@ -1,72 +1,51 @@
-// Lightweight two-finger rotate. Preserves native pinch-zoom except while rotating.
-let active = new WeakMap();
+// wwwroot/rotation.js
+export function attachTwoFingerRotate(svgEl, dotNetRef){
+  const pointers = new Map();
 
+  let prevAngle = null;
 
-export function attachTwoFingerRotate(svgEl, dotnetRef) {
-    if (!svgEl) return;
+  function angleBetween(p1, p2){
+    const dx = p2.clientX - p1.clientX;
+    const dy = p2.clientY - p1.clientY;
+    return Math.atan2(dy, dx) * 180 / Math.PI; // degrees
+  }
 
-
-    const state = { pointers: new Map(), rotating: false, lastAngle: 0 };
-    const opts = { passive: false };
-
-
-    function center() {
-        const vb = svgEl.viewBox.baseVal; // 0 0 420 420
-        return { x: vb.x + vb.width / 2, y: vb.y + vb.height / 2 };
+  function onPointerDown(e){
+    svgEl.setPointerCapture?.(e.pointerId);
+    pointers.set(e.pointerId, e);
+    if(pointers.size === 2){
+      const [a,b] = [...pointers.values()];
+      prevAngle = angleBetween(a,b);
     }
+  }
 
+  function onPointerMove(e){
+    if(!pointers.has(e.pointerId)) return;
+    pointers.set(e.pointerId, e);
 
-    function angle(p1, p2) {
-        const ctr = center();
-        const a1 = Math.atan2(p1.clientY - ctr.y, p1.clientX - ctr.x);
-        const a2 = Math.atan2(p2.clientY - ctr.y, p2.clientX - ctr.x);
-        return (a2 - a1) * 180 / Math.PI;
+    if(pointers.size === 2){
+      const [a,b] = [...pointers.values()];
+      const ang = angleBetween(a,b);
+      if(prevAngle != null){
+        let delta = ang - prevAngle;
+        // normalize to (-180,180] to avoid big jumps
+        if (delta > 180) delta -= 360;
+        if (delta <= -180) delta += 360;
+        // call into .NET
+        dotNetRef.invokeMethodAsync('RotateBy', delta);
+      }
+      prevAngle = ang;
     }
+  }
 
+  function onPointerUpOrCancel(e){
+    pointers.delete(e.pointerId);
+    if(pointers.size < 2) prevAngle = null;
+  }
 
-    function onPointerDown(e) {
-        if (!(e.pointerType === 'touch')) return;
-        state.pointers.set(e.pointerId, e);
-        if (state.pointers.size === 2) { state.rotating = true; state.lastAngle = getAngle(); svgEl.style.touchAction = 'none'; }
-    }
-
-
-    function onPointerMove(e) {
-        if (!(e.pointerType === 'touch')) return;
-        if (!state.pointers.has(e.pointerId)) return;
-        state.pointers.set(e.pointerId, e);
-        if (state.rotating && state.pointers.size === 2) {
-            e.preventDefault();
-            const a = getAngle();
-            const delta = a - state.lastAngle;
-            state.lastAngle = a;
-            try { dotnetRef.invokeMethodAsync('RotateBy', delta); } catch { }
-        }
-    }
-
-
-    function onPointerUp(e) {
-        if (!(e.pointerType === 'touch')) return;
-        state.pointers.delete(e.pointerId);
-        if (state.pointers.size < 2 && state.rotating) {
-            state.rotating = false; svgEl.style.touchAction = '';
-        }
-    }
-
-
-    function getAngle() {
-        const it = state.pointers.values();
-        const p1 = it.next().value; const p2 = it.next().value;
-        if (!p1 || !p2) return 0;
-        return angle(p1, p2);
-    }
-
-
-    svgEl.addEventListener('pointerdown', onPointerDown, opts);
-    svgEl.addEventListener('pointermove', onPointerMove, opts);
-    window.addEventListener('pointerup', onPointerUp, opts);
-    window.addEventListener('pointercancel', onPointerUp, opts);
-
-
-    active.set(svgEl, { onPointerDown, onPointerMove, onPointerUp });
+  // Use pointer events (works for touch + pen + mouse)
+  svgEl.addEventListener('pointerdown', onPointerDown);
+  svgEl.addEventListener('pointermove', onPointerMove);
+  svgEl.addEventListener('pointerup', onPointerUpOrCancel);
+  svgEl.addEventListener('pointercancel', onPointerUpOrCancel);
 }

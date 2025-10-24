@@ -182,3 +182,8 @@ svg[b-ygoalvtn3e] {
     animation: seg-reveal-b-ygoalvtn3e var(--revDur,600ms) cubic-bezier(.2,.8,.3,1) forwards;
     animation-delay: var(--revDelay,0ms);
 }
+
+.touch-rotate[b-ygoalvtn3e] {
+    touch-action: none; /* block browser zoom/scroll on this element */
+    overscroll-behavior: contain; /* stop page bounce/scroll chaining */
+}
