@@ -1,0 +1,34 @@
+[
+  {
+    "Label1": "Drug Target",
+    "Value": 1.0,
+    "ColorStart": "#FA8C9A",
+    "ColorEnd": "#F26D7D"
+  },
+  {
+    "Label1": "Affinity",
+    "Value": 1.0,
+    "ColorStart": "#FA8C9A",
+    "ColorEnd": "#F26D7D"
+  },
+  {
+    "Label1": "Potency",
+    "Value": 1.0,
+    "ColorStart": "#FA8C9A",
+    "ColorEnd": "#F26D7D"
+  },
+  {
+    "Label1": "Mechanism",
+    "Label2": "of",
+    "Label3": "Action",
+    "Value": 1.0,
+    "ColorStart": "#FA8C9A",
+    "ColorEnd": "#F26D7D"
+  },
+  {
+    "Label1": "Selectivity",
+    "Value": 1.0,
+    "ColorStart": "#FA8C9A",
+    "ColorEnd": "#F26D7D"
+  }
+]
