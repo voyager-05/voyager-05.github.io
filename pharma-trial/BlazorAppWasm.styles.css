@@ -1,3 +1,65 @@
+/* /DonutFromJson.razor.rz.scp.css */
+.tooltip-fixed[b-nenpfu4bxg] {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.80);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 20px;
+
+    white-space: nowrap;
+    --gap: 14px;
+}
+
+.tooltip-fixed.right[b-nenpfu4bxg] {
+    transform: translateX(var(--gap));
+}
+
+.tooltip-fixed.left[b-nenpfu4bxg] {
+    transform: translateX(calc(-100% - var(--gap)));
+}
+
+.info-box[b-nenpfu4bxg] {
+     position: fixed;
+     right: 1rem;
+     bottom: 1rem;
+     max-width: 28rem;
+     padding: 1rem;
+     border-radius: .75rem;
+     background: #111;
+     color: #fff;
+     box-shadow: 0 10px 30px rgba(0,0,0,.35);
+ }
+
+.info-box h3[b-nenpfu4bxg] {
+    margin: .25rem 0 .5rem;
+    font-weight: 700;
+}
+
+.info-box[b-nenpfu4bxg] {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 10000;
+    background: #111;
+    color: #fff;
+    padding: 1rem;
+    border-radius: .75rem
+}
+
+.close-btn[b-nenpfu4bxg] {
+    position: absolute;
+    top: -0.50rem;
+    right: .5rem;
+    background: none;
+    border: 0;
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer
+}
+
 /* /DonutWithArcLabels.razor.rz.scp.css */
 
 /* Make the SVG fill the container as you already have */

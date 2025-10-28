@@ -6,3 +6,9 @@ export function getDeviceInfo() {
         dpr: window.devicePixelRatio || 1
     };
 }
+
+export function getRect(el) {
+    if (!el) return null;
+    const r = el.getBoundingClientRect();
+    return { left: r.left, top: r.top, width: r.width, height: r.height };
+}
