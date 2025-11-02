@@ -295,35 +295,6 @@ svg[b-ygoalvtn3e] {
     /* return center */
 }
 
-
-.video-overlay[b-ygoalvtn3e] {
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 180px;
-    height: 100px;
-    pointer-events: none;
-}
-
-.video-overlay video[b-ygoalvtn3e] {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.center-video[b-ygoalvtn3e] {
-    position: absolute;
-    left: 50%;
-    top: 38%;
-    transform: translate(-50%, -100%);
-    width: 180px;
-    height: 100px;
-    object-fit: contain;
-    background-color: transparent; /* not needed, but harmless */
-    pointer-events: none;
-}
-
 .center-arc-text text[b-ygoalvtn3e] {
     font-weight: 700; /* bold */
     letter-spacing: 1.2px;
@@ -362,6 +333,75 @@ svg[b-ygoalvtn3e] {
 .touch-rotate[b-ygoalvtn3e] {
     /*touch-action: none;*/ /* block browser zoom/scroll on this element */
     overscroll-behavior: contain; /* stop page bounce/scroll chaining */
+}
+
+/*.unity-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);*/ /* center it */
+    /*width: 85vw;*/ /* use viewport-relative size */
+    /*height: 85vh;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}*/
+
+/* Unity container fills the overlay */
+/*#unity-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}*/
+
+/* Empty the following unity-overlay to make donut and Unity side-by-side */
+.unity-overlay[b-ygoalvtn3e] {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95vw;  
+    height: 95vh;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+.unity-overlay.is-closed[b-ygoalvtn3e] {
+    display: none;
+}
+
+#unity-container[b-ygoalvtn3e] {
+    position: relative;
+    width: 85vw;
+    height: 85vh;
+    background: #000;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+#unity-canvas[b-ygoalvtn3e] {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.unity-close[b-ygoalvtn3e] {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    z-index: 2;
 }
 /* /Index.razor.rz.scp.css */
 .tiny-footer[b-xrbow302sr] {
