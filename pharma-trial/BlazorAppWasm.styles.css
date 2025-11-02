@@ -83,7 +83,7 @@
 
 /* 3-slice skin */
 .ibox-top[b-nenpfu4bxg] {
-    background: url("/images/top_infobox.png") no-repeat;
+    background: var(--ibox-top-image-uri) no-repeat;
     background-size: 100% 100%;
     height: 56px; /* top cap height */
     padding: 10px 14px;
@@ -104,9 +104,8 @@
 }
 
 .ibox-mid[b-nenpfu4bxg] {
-    background: url("/images/middle_infobox.png") repeat-y; /* stretches with content */
+    background: var(--ibox-middle-image-uri) repeat-y; /* stretches with content */
     background-size: 100% auto;
-    
     position: relative;
     z-index: 1;
     margin-top: -10px; /* overlap amount */
@@ -120,7 +119,7 @@
 }
 
 .ibox-bot[b-nenpfu4bxg] {
-    background: url("/images/bottom_infobox.png") no-repeat;
+    background: var(--ibox-bottom-image-uri) no-repeat;
     background-size: 100% 100%;
     height: 20px; /* bottom cap height */
 }
