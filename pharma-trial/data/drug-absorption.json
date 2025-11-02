@@ -2,7 +2,7 @@
   {
     "Label1": "Absorption",
     "Title": "Drug Absorption",
-    "Tooltip":  "See video here about Abscorption",
+    "Tooltip": "See video here about Abscorption",
     "Description": "Absorption describes how a drug enters the bloodstream from its administration site, influenced by formulation, route, and physiological barriers like membranes.",
     "Value": 1.0,
     "ColorStart": "#ADC5D9",
