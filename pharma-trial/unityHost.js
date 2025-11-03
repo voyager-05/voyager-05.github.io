@@ -41,11 +41,11 @@ export async function startUnity(divId) {
     // Close button
     const close = document.createElement("img");
     close.id = "unity-close";
-    close.src = "images/back_btn.png";
+    close.src = "images/back_btn_2.png";
     close.alt = "Close";
     Object.assign(close.style, {
         position: "absolute", top: "10px", left: "10px",
-        width: "150px", height: "150px", cursor: "pointer", zIndex: "30", opacity: "0.9"
+        width: "60px", height: "60px", cursor: "pointer", zIndex: "30", opacity: "0.9"
     });
     close.addEventListener("click", () => hideUnity(divId));
     box.appendChild(close);
@@ -88,15 +88,12 @@ export function hideUnity(divId) {
     if (!entry) return;
     entry.host.style.display = "none"; // hide only (do NOT unload)
 
-    if (window.DotNet) {
-        DotNet.invokeMethodAsync("BlazorAppWasm", "HideAIChat");
-    }
+    window.DotNet?.invokeMethodAsync("BlazorAppWasm", "HideAIChat");
 }
 
 export function showUnity(divId) {
-    if (window.DotNet) {
-        DotNet.invokeMethodAsync("BlazorAppWasm", "ShowAIChat");
-    }
+    window.DotNet?.invokeMethodAsync("BlazorAppWasm", "ShowAIChat");
+
     const entry = hosts.get(divId);
     if (!entry) { startUnity(divId); return; }
     entry.host.style.display = "flex";
@@ -107,8 +104,6 @@ export function showUnity(divId) {
     const h = box?.clientHeight || window.innerHeight * 0.85;
     if (canvas) { canvas.width = w; canvas.height = h; }
     entry.instance?.Module?.setCanvasSize?.(w, h);
-
-
 }
 
 
