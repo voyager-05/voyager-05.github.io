@@ -1,27 +1,25 @@
 /* /App.razor.rz.scp.css */
-/* fixed anchor that doesn't scale */
 .disclaimer-wrap[b-fn4x0jitn1] {
     position: fixed;
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 5000;
-    pointer-events: none; /* clicks pass through wrapper */
+    z-index: 5000; /* higher than unity overlay (1000) */
+    pointer-events: none; /* ⬅︎ wrapper ignores clicks */
 }
 
+
+/* the actual banner is clickable */
 .disclaimer[b-fn4x0jitn1] {
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%) scale(var(--inv-zoom, 1));
-    transform-origin: top center;
-    white-space: nowrap;
-    background: rgba(0, 0, 0, 0.7);
+    position: relative; /* create containing block for absolute X */
+    pointer-events: auto; /* ⬅︎ re-enable clicks on the banner */
+    background: rgba(0,0,0,.7);
     color: #fff;
     padding: 6px 36px 6px 14px;
     border-radius: 6px;
-    font-size: 0.9rem;
-    z-index: 3000;
+    white-space: nowrap;
+    transform: scale(var(--inv-zoom,1));
+    transform-origin: top center;
 }
 
 .disclaimer-text[b-fn4x0jitn1] {
@@ -33,12 +31,13 @@
     top: 4px;
     right: 8px;
     background: transparent;
-    border: none;
+    border: 0;
     color: #fff;
-    font-size: 18px;
+    font-size: 25px;
     line-height: 1;
     cursor: pointer;
-    opacity: .65;
+    z-index: 1;
+    opacity: 0.65
 }
 
 .disclaimer-close:hover[b-fn4x0jitn1] {

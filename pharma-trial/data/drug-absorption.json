@@ -1,7 +1,7 @@
 [
   {
     "Label1": "Absorption",
-    "Title": "Drug Absorption",
+    "Title": "Drug absorption",
     "Tooltip": "See video here about Absorption",
     "Description": "Absorption describes how a drug enters the bloodstream from its administration site, influenced by formulation, route, and physiological barriers like membranes.",
     "Value": 1.0,
@@ -11,7 +11,7 @@
   {
     "Label1": "Distribution",
     "Label2": "",
-    "Label3": "Plasma",
+    "Label3": "plasma",
     "Title": "Drug Distribution",
     "Tooltip": "How drug distribution work",
     "Description": "Distribution covers how the drug spreads through body compartments and tissues, often bound to proteins and passing selectively into organs.",
@@ -22,8 +22,8 @@
   {
     "Label1": "Metabolism",
     "Label2": "",
-    "Label3": "Liver",
-    "Title": "Drug Metabolism",
+    "Label3": "liver",
+    "Title": "drug metabolism",
     "Tooltip": "Info about Drug Metabolism",
     "Description": "Metabolism transforms the parent compound into metabolites via enzymes, mainly in the liver, altering activity and facilitating excretion.",
     "Value": 1.0,
@@ -32,8 +32,8 @@
   },
   {
     "Label1": "Excretion",
-    "Title": "Drug Excretion",
-    "Tooltip": "What's Excretion",
+    "Title": "Drug excretion",
+    "Tooltip": "What's excretion",
     "Description": "Excretion removes drug and metabolites, primarily through kidneys into urine, also via bile, sweat, or breath depending on properties.",
     "Value": 1.0,
     "ColorStart": "#ADC5D9",

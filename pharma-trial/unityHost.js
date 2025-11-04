@@ -28,7 +28,7 @@ export async function startUnity(divId) {
     box.appendChild(loader);
 
     const close = Object.assign(document.createElement("img"), { id: "unity-close", alt: "Close" });
-    close.src = base + "images/back_btn_2.png";
+    close.src = base + "images/back_btn_3.png";
     Object.assign(close.style, { position: "absolute", top: "10px", left: "10px", width: "60px", height: "60px", cursor: "pointer", zIndex: "30", opacity: "0.9", userSelect: "none" });
     close.addEventListener("click", () => hideUnity(divId));
     box.appendChild(close);

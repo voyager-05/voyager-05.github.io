@@ -1,10 +1,19 @@
-﻿/* ========== GLOBAL RESET ========== */
+﻿/*ADDING CUSTOM FONT FROM FOLDER*/
+@font-face{
+    font-family: "MyCustomFont";
+    src: url("/fonts/MyCustomFont.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ========== GLOBAL RESET ========== */
 html, body {
     height: 100%;
     margin: 0;
     background: #0d1117;
     color: #e5e7eb;
-    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    font-family: "MyCustomFont", "Segoe UI", Arial, Helvetica, sans-serif;
 }
 
 /* ========== APP CONTAINER ========== */
