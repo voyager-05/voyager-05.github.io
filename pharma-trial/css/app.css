@@ -1,7 +1,7 @@
 ﻿/*ADDING CUSTOM FONT FROM FOLDER*/
 @font-face{
     font-family: "MyCustomFont";
-    src: url("fonts/MyCustomFont.woff2") format("woff2");
+    src: url("../fonts/MyCustomFont.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
