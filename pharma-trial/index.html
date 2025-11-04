@@ -3,8 +3,12 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pharmaco Education</title>
+    <meta name="viewport"
+          content="width=device-width,
+                 initial-scale=1,
+                 maximum-scale=1,
+                 user-scalable=no" />
+	<title>Pharmaco Education</title>
     <base href="/pharma-trial/" />
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
@@ -27,6 +31,17 @@
         <span class="dismiss">🗙</span>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
+
+	<script>
+		function setZoomVars() {
+			const z = window.devicePixelRatio || 1;
+			document.documentElement.style.setProperty('--inv-zoom', (1 / z).toString());
+		}
+		setZoomVars();
+		addEventListener('resize', setZoomVars);
+		addEventListener('orientationchange', setZoomVars);
+	</script>
+
 </body>
 
 </html>
