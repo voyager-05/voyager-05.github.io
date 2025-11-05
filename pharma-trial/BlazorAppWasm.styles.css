@@ -322,7 +322,7 @@ svg[b-ygoalvtn3e] {
 
 .center-gif[b-ygoalvtn3e] {
     transform-origin: center bottom;
-    animation: wobble-b-ygoalvtn3e 2.8s ease-in-out infinite;
+    /*animation: wobble 2.8s ease-in-out infinite;*/
 }
 
 @keyframes wobble-b-ygoalvtn3e {
@@ -346,6 +346,24 @@ svg[b-ygoalvtn3e] {
         transform: rotate(0deg);
     }
     /* return center */
+}
+
+
+
+@keyframes ask_me_bell_ring-b-ygoalvtn3e {
+  0%   { transform: rotate(0deg) scale(1); }
+  10%  { transform: rotate(3deg)  scale(1.02); }
+  20%  { transform: rotate(-3deg) scale(1.02); }
+  30%  { transform: rotate(2deg)  scale(1.01); }
+  40%  { transform: rotate(-2deg) scale(1.01); }
+  50%  { transform: rotate(1deg)  scale(1.00); }
+  60%  { transform: rotate(-1deg) scale(1.00); }
+  70%,100% { transform: rotate(0deg) scale(1); }
+}
+
+.ask_me_ringing[b-ygoalvtn3e] {
+    transform-origin: top center;
+    animation: ask_me_bell_ring-b-ygoalvtn3e 2.0s ease-in-out infinite;
 }
 
 .center-arc-text text[b-ygoalvtn3e] {
