@@ -223,8 +223,32 @@
 .ibox-bot[b-nenpfu4bxg] {
     background: var(--ibox-bottom-image-uri) no-repeat;
     background-size: 100% 100%;
-    height: 20px;
+    height: 40px; /* slightly taller to fit the link */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+/* When an external link is present */
+.ibox-bot.has-link[b-nenpfu4bxg] {
+    height: 40px; /* expand slightly to fit link */
+}
+
+/* Link styling */
+.ibox-link[b-nenpfu4bxg] {
+    color: #007bff;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.ibox-link:hover[b-nenpfu4bxg] {
+    color: #66b2ff;
+    transform: scale(1.05);
+    text-decoration: underline;
+}
+
 
 .close-btn[b-nenpfu4bxg] {
     position: absolute;
@@ -390,18 +414,17 @@ svg[b-ygoalvtn3e] {
 
 @keyframes ask_me_bell_ring-b-ygoalvtn3e {
   0%   { transform: rotate(0deg) scale(1); }
-  10%  { transform: rotate(3deg)  scale(1.02); }
-  20%  { transform: rotate(-3deg) scale(1.02); }
-  30%  { transform: rotate(2deg)  scale(1.01); }
-  40%  { transform: rotate(-2deg) scale(1.01); }
-  50%  { transform: rotate(1deg)  scale(1.00); }
-  60%  { transform: rotate(-1deg) scale(1.00); }
+  10%  { transform: rotate(1.5deg) scale(1.01); }
+  20%  { transform: rotate(-1.5deg) scale(1.01); }
+  30%  { transform: rotate(1deg) scale(1.005); }
+  40%  { transform: rotate(-1deg) scale(1.005); }
+  50%  { transform: rotate(0.5deg) scale(1.002); }
   70%,100% { transform: rotate(0deg) scale(1); }
 }
 
 .ask_me_ringing[b-ygoalvtn3e] {
     transform-origin: top center;
-    animation: ask_me_bell_ring-b-ygoalvtn3e 2.0s ease-in-out infinite;
+    animation: ask_me_bell_ring-b-ygoalvtn3e 4.0s ease-in-out infinite;
 }
 
 .center-arc-text text[b-ygoalvtn3e] {

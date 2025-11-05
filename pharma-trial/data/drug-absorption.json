@@ -1,42 +1,61 @@
 [
   {
-    "Label1": "Absorption",
+    "Label1": "Definition",
     "Title": "Drug absorption",
-    "Tooltip": "See video here about Absorption",
+    "Tooltip": "Define here...",
     "Description": "Absorption describes how a drug enters the bloodstream from its administration site, influenced by formulation, route, and physiological barriers like membranes.",
     "Value": 1.0,
     "ColorStart": "#ADC5D9",
-    "ColorEnd": "#C2DCF2"
+    "ColorEnd": "#C2DCF2",
+    "ExternalLink": "",
+    "CentreAvatarImage": ""
   },
   {
-    "Label1": "Distribution",
+    "Label1": "VR",
     "Label2": "",
-    "Label3": "plasma",
+    "Label3": "animation",
     "Title": "Drug Distribution",
-    "Tooltip": "How drug distribution work",
-    "Description": "Distribution covers how the drug spreads through body compartments and tissues, often bound to proteins and passing selectively into organs.",
+    "Tooltip": "Get your headset ready",
+    "Description": "Distribution covers how the drug spreads through body tissues.",
     "Value": 1.0,
     "ColorStart": "#ADC5D9",
-    "ColorEnd": "#C2DCF2"
+    "ColorEnd": "#C2DCF2",
+    "ExternalLink": "https://youtu.be/s2yptsPIxa8",
+    "CentreImage": "Pharmie_with_QuestVR.png"
   },
   {
-    "Label1": "Metabolism",
+    "Label1": "Video",
     "Label2": "",
-    "Label3": "liver",
+    "Label3": "lecture",
     "Title": "drug metabolism",
-    "Tooltip": "Info about Drug Metabolism",
+    "Tooltip": "Watch video...",
     "Description": "Metabolism transforms the parent compound into metabolites via enzymes, mainly in the liver, altering activity and facilitating excretion.",
     "Value": 1.0,
     "ColorStart": "#ADC5D9",
-    "ColorEnd": "#C2DCF2"
+    "ColorEnd": "#C2DCF2",
+    "ExternalLink": "https://vimeo.com/469314952",
+    "CentreAvatarImage": ""
   },
   {
-    "Label1": "Excretion",
+    "Label1": "Podcast",
     "Title": "Drug excretion",
-    "Tooltip": "What's excretion",
+    "Tooltip": "Listen here...",
     "Description": "Excretion removes drug and metabolites, primarily through kidneys into urine, also via bile, sweat, or breath depending on properties.",
     "Value": 1.0,
     "ColorStart": "#ADC5D9",
-    "ColorEnd": "#C2DCF2"
+    "ColorEnd": "#C2DCF2",
+    "ExternalLink": "",
+    "CentreAvatarImage": ""
+  },
+  {
+    "Label1": "Quiz",
+    "Title": "Drug excretion",
+    "Tooltip": "Test you knowledge...",
+    "Description": "Excretion removes drug and metabolites, primarily through kidneys into urine, also via bile, sweat, or breath depending on properties.",
+    "Value": 1.0,
+    "ColorStart": "#ADC5D9",
+    "ColorEnd": "#C2DCF2",
+    "ExternalLink": "",
+    "CentreAvatarImage": ""
   }
 ]
