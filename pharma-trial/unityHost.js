@@ -1,6 +1,11 @@
 ﻿const hosts = new Map(); // divId -> { host, instance, off }
 
 export async function startUnity(divId) {
+
+    // Reset scene scale before showing Unity
+    document.documentElement.style.setProperty("--scene-scale", "1");
+    document.documentElement.style.setProperty("--scene-offset-y", "0px");
+
     const base = document.baseURI || "/";
     const host = document.getElementById(divId);
     if (!host) return;

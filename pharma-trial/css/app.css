@@ -226,3 +226,14 @@ body.loaded #app {
     cursor: pointer;
     z-index: 2;
 }
+
+:root {
+    --scene-scale: 1;
+    --scene-offset-y: 0px;
+}
+
+.scene-scale {
+    transform: translateY(var(--scene-offset-y)) scale(var(--scene-scale));
+    transform-origin: top center;
+    transition: transform .25s ease;
+}

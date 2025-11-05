@@ -1,9 +1,9 @@
 {
   "mainAssemblyName": "BlazorAppWasm",
   "resources": {
-    "hash": "sha256-sHE1HAWZeb5iYHb4o6sVFMW70Ws+0r0Ct2lb9zYnfOo=",
+    "hash": "sha256-3fZkLZze/8rw2z8PohsthP4y/GJ3ORKxDi0F5ldPkqA=",
     "fingerprinting": {
-      "Microsoft.AspNetCore.Components.bulf9d5mp1.wasm": "Microsoft.AspNetCore.Components.wasm",
+      "Microsoft.AspNetCore.Components.2el0bnq090.wasm": "Microsoft.AspNetCore.Components.wasm",
       "Microsoft.AspNetCore.Components.Web.7ngahalaxh.wasm": "Microsoft.AspNetCore.Components.Web.wasm",
       "Microsoft.AspNetCore.Components.WebAssembly.26c9tx9k9t.wasm": "Microsoft.AspNetCore.Components.WebAssembly.wasm",
       "Microsoft.Extensions.Configuration.cyz6aj3end.wasm": "Microsoft.Extensions.Configuration.wasm",
@@ -37,7 +37,7 @@
       "System.Text.RegularExpressions.5gjltihx5v.wasm": "System.Text.RegularExpressions.wasm",
       "System.Threading.6wxzpv4ki1.wasm": "System.Threading.wasm",
       "System.Private.CoreLib.j21pfgesti.wasm": "System.Private.CoreLib.wasm",
-      "BlazorAppWasm.l3zopaiplh.wasm": "BlazorAppWasm.wasm",
+      "BlazorAppWasm.lisv2phwq2.wasm": "BlazorAppWasm.wasm",
       "dotnet.native.kn72fmu5j9.js": "dotnet.native.js",
       "dotnet.native.o18ej7ph85.wasm": "dotnet.native.wasm",
       "dotnet.js": "dotnet.js",
@@ -65,7 +65,7 @@
       "System.Private.CoreLib.j21pfgesti.wasm": "sha256-q2CTHMmyQXVRvmZPmcMOOQ8ijNitSxKKqSXi25SQoz0="
     },
     "assembly": {
-      "Microsoft.AspNetCore.Components.bulf9d5mp1.wasm": "sha256-U+lNqppedCpBCaokzK5hgO3C1zd3asj83rQxq99ktOA=",
+      "Microsoft.AspNetCore.Components.2el0bnq090.wasm": "sha256-SrNfJRwLoDZyBHXdkHJyY+mMRlDWWn7KH0aattfpvME=",
       "Microsoft.AspNetCore.Components.Web.7ngahalaxh.wasm": "sha256-PaSaS7fXvt/Zug+yL7Ffp938IuUoSQx+zvWJafYjyhU=",
       "Microsoft.AspNetCore.Components.WebAssembly.26c9tx9k9t.wasm": "sha256-JmnBR4DcINen5czBo7dWB5Wil0VAtvxF2gFSwXW5Lc0=",
       "Microsoft.Extensions.Configuration.cyz6aj3end.wasm": "sha256-fN4AyqImDQ+h3H7tFeF4ZSkjIHJ7qWgbKL217x6P53s=",
@@ -97,7 +97,7 @@
       "System.Text.Json.nfx6s832ck.wasm": "sha256-PaUiTGEAWpmpBoNQBQG4G044wn6I9CKQKZKVBLBsY2w=",
       "System.Text.RegularExpressions.5gjltihx5v.wasm": "sha256-tWq9vht0rY9iM6tvHI4CaV2Nogm0sR+EJEOy72TVrIk=",
       "System.Threading.6wxzpv4ki1.wasm": "sha256-qpTsdttgwFKu3sCPl9Qw0nYZISOGaHpAJFTWUzt9Xzw=",
-      "BlazorAppWasm.l3zopaiplh.wasm": "sha256-T7fG3NIx1Rm0MNJK8iAFxOeXn2T5ctVPqv3/xEGQvKU="
+      "BlazorAppWasm.lisv2phwq2.wasm": "sha256-HfjNct7C+LZk1KEA8quwkx1ny0oFpmwf3ASR7Gwrug0="
     }
   },
   "cacheBootResources": true,
