@@ -8,7 +8,8 @@
     "ColorStart": "#ADC5D9",
     "ColorEnd": "#C2DCF2",
     "ExternalLink": "",
-    "CentreAvatarImage": ""
+    "CentreAvatarImage": "",
+    "AudioUrl": ""
   },
   {
     "Label1": "VR",
@@ -21,7 +22,8 @@
     "ColorStart": "#ADC5D9",
     "ColorEnd": "#C2DCF2",
     "ExternalLink": "https://youtu.be/s2yptsPIxa8",
-    "CentreImage": "Pharmie_with_QuestVR.png"
+    "CentreImage": "Pharmie_with_QuestVR.png",
+    "AudioUrl": ""
   },
   {
     "Label1": "Video",
@@ -34,18 +36,20 @@
     "ColorStart": "#ADC5D9",
     "ColorEnd": "#C2DCF2",
     "ExternalLink": "https://vimeo.com/469314952",
-    "CentreAvatarImage": ""
+    "CentreAvatarImage": "",
+    "AudioUrl": ""
   },
   {
     "Label1": "Podcast",
-    "Title": "Drug excretion",
-    "Tooltip": "Listen here...",
-    "Description": "Excretion removes drug and metabolites, primarily through kidneys into urine, also via bile, sweat, or breath depending on properties.",
+    "Title": "Drug Absorption",
+    "Tooltip": "Speaker ON?...",
+    "Description": "Click Play To Start...",
     "Value": 1.0,
     "ColorStart": "#ADC5D9",
     "ColorEnd": "#C2DCF2",
     "ExternalLink": "",
-    "CentreAvatarImage": ""
+    "CentreAvatarImage": "",
+    "AudioUrl": "audio/podkast_drug_absorption.m4a"
   },
   {
     "Label1": "Quiz",
@@ -56,6 +60,7 @@
     "ColorStart": "#ADC5D9",
     "ColorEnd": "#C2DCF2",
     "ExternalLink": "",
-    "CentreAvatarImage": ""
+    "CentreAvatarImage": "",
+    "AudioUrl": ""
   }
 ]

@@ -40,13 +40,19 @@ export async function startUnity(divId) {
 
     mount.appendChild(box);
 
-    const cfg = {
-        dataUrl: base + "PharmaCoreDev_Chatbot/Build/PharmaCoreDev_Chatbot.data.unityweb",
-        frameworkUrl: base + "PharmaCoreDev_Chatbot/Build/PharmaCoreDev_Chatbot.framework.js.unityweb",
-        codeUrl: base + "PharmaCoreDev_Chatbot/Build/PharmaCoreDev_Chatbot.wasm.unityweb",
+    const sectionConfig =
+        await DotNet.invokeMethodAsync("BlazorAppWasm", "GetWhichSegmentInside");
+    console.log("======>" + sectionConfig + "<===========");
+
+    const cfg = {        
+        dataUrl: base + `PharmaCoreDev_Chatbot${sectionConfig}/Build/PharmaCoreDev_Chatbot.data.unityweb`,
+        frameworkUrl: base + `PharmaCoreDev_Chatbot${sectionConfig}/Build/PharmaCoreDev_Chatbot.framework.js.unityweb`,
+        codeUrl: base + `PharmaCoreDev_Chatbot${sectionConfig}/Build/PharmaCoreDev_Chatbot.wasm.unityweb`,
         matchWebGLToCanvasSize: true,
         devicePixelRatio: window.devicePixelRatio
     };
+
+
 
     const onProgress = p => {
         const v = Math.round((p ?? 0) * 100);
@@ -81,7 +87,7 @@ export async function startUnity(divId) {
     if (!document.getElementById("unity-loader-added")) {
         const s = document.createElement("script");
         s.id = "unity-loader-added";
-        s.src = base + "PharmaCoreDev_Chatbot/Build/PharmaCoreDev_Chatbot.loader.js";
+        s.src = base + `PharmaCoreDev_Chatbot${sectionConfig}/Build/PharmaCoreDev_Chatbot.loader.js`;
         s.onload = load; document.body.appendChild(s);
     } else load();
 

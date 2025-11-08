@@ -96,7 +96,7 @@
 }
 /* /DonutFromJson.razor.rz.scp.css */
 /* ---------------- TOOLTIP ---------------- */
-.tooltip-fixed[b-nenpfu4bxg] {
+/*.tooltip-fixed {
     position: fixed;
     pointer-events: none;
     z-index: 9999;
@@ -112,15 +112,46 @@
     transform-origin: top left;
 }
 
-.tooltip-fixed.right[b-nenpfu4bxg] {
+.tooltip-fixed.right {
     --tx: var(--gap);
     --ty: 0;
 }
 
-.tooltip-fixed.left[b-nenpfu4bxg] {
+.tooltip-fixed.left {
     --tx: calc(-100% - var(--gap));
     --ty: 0;
 }
+*/
+
+.tooltip-fixed[b-nenpfu4bxg] {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform-origin: top left;
+    transform: scale(var(--inv-zoom, 1)); /* only scale here */
+}
+
+.tooltip-inner[b-nenpfu4bxg] {
+    background: rgba(0,0,0,.8);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 20px;
+    white-space: nowrap;
+    --gap: 8px;
+    --tx: var(--gap);
+    transform: translate(var(--tx), 0); /* only translate here */
+}
+
+/* left/right decide horizontal offset */
+.tooltip-fixed.left .tooltip-inner[b-nenpfu4bxg] {
+    --tx: calc(-100% - var(--gap));
+}
+
+.tooltip-fixed.right .tooltip-inner[b-nenpfu4bxg] {
+    --tx: var(--gap);
+}
+
 
 /* ---------------- INFO BOX ---------------- */
 .info-box[b-nenpfu4bxg] {
