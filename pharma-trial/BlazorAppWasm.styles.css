@@ -95,33 +95,6 @@
     transform: scale(1.1);
 }
 /* /DonutFromJson.razor.rz.scp.css */
-/* ---------------- TOOLTIP ---------------- */
-/*.tooltip-fixed {
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    background: rgba(0, 0, 0, 0.80);
-    color: white;
-    padding: 6px 10px;
-    border-radius: 6px;
-    font-size: 20px;
-    white-space: nowrap;
-    --gap: 14px;
-
-    transform: scale(var(--inv-zoom, 1));
-    transform-origin: top left;
-}
-
-.tooltip-fixed.right {
-    --tx: var(--gap);
-    --ty: 0;
-}
-
-.tooltip-fixed.left {
-    --tx: calc(-100% - var(--gap));
-    --ty: 0;
-}
-*/
 
 .tooltip-fixed[b-nenpfu4bxg] {
     position: fixed;
@@ -157,7 +130,7 @@
 .info-box[b-nenpfu4bxg] {
     position: fixed;
     z-index: 10000;
-    width: 320px;
+    width: 480px;
     pointer-events: auto;
     box-sizing: border-box;
     background: transparent;
@@ -236,6 +209,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 2rem;
 }
 
 .ibox-mid[b-nenpfu4bxg] {
@@ -249,6 +223,7 @@
     max-height: calc(100vh - 56px - 44px - 24px);
     overflow: auto;
     color: #000;
+    font-size: 1.85rem;
 }
 
 .ibox-bot[b-nenpfu4bxg] {
