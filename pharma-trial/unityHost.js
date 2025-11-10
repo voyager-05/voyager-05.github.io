@@ -45,9 +45,9 @@ export async function startUnity(divId) {
     console.log("======>" + sectionConfig + "<===========");
 
     const cfg = {        
-        dataUrl: base + `PharmaCoreDev_Chatbot${sectionConfig}/Build/PharmaCoreDev_Chatbot.data.unityweb`,
-        frameworkUrl: base + `PharmaCoreDev_Chatbot${sectionConfig}/Build/PharmaCoreDev_Chatbot.framework.js.unityweb`,
-        codeUrl: base + `PharmaCoreDev_Chatbot${sectionConfig}/Build/PharmaCoreDev_Chatbot.wasm.unityweb`,
+        dataUrl: base + `PharmaCoreDev_Chatbot${sectionConfig}/Build/PharmaCoreDev_Chatbot${sectionConfig}.data.unityweb`,
+        frameworkUrl: base + `PharmaCoreDev_Chatbot${sectionConfig}/Build/PharmaCoreDev_Chatbot${sectionConfig}.framework.js.unityweb`,
+        codeUrl: base + `PharmaCoreDev_Chatbot${sectionConfig}/Build/PharmaCoreDev_Chatbot${sectionConfig}.wasm.unityweb`,
         matchWebGLToCanvasSize: true,
         devicePixelRatio: window.devicePixelRatio
     };
@@ -87,7 +87,7 @@ export async function startUnity(divId) {
     if (!document.getElementById("unity-loader-added")) {
         const s = document.createElement("script");
         s.id = "unity-loader-added";
-        s.src = base + `PharmaCoreDev_Chatbot${sectionConfig}/Build/PharmaCoreDev_Chatbot.loader.js`;
+        s.src = base + `PharmaCoreDev_Chatbot${sectionConfig}/Build/PharmaCoreDev_Chatbot${sectionConfig}.loader.js`;
         s.onload = load; document.body.appendChild(s);
     } else load();
 
