@@ -1,0 +1,503 @@
+/* /App.razor.rz.scp.css */
+.disclaimer-wrap[b-fn4x0jitn1] {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5000; /* higher than unity overlay (1000) */
+    pointer-events: none; /* ⬅︎ wrapper ignores clicks */
+}
+
+
+/* the actual banner is clickable */
+.disclaimer[b-fn4x0jitn1] {
+    position: relative; /* create containing block for absolute X */
+    pointer-events: auto; /* ⬅︎ re-enable clicks on the banner */
+    background: rgba(0,0,0,.7);
+    color: #fff;
+    padding: 6px 36px 6px 14px;
+    border-radius: 6px;
+    white-space: nowrap;
+    transform: scale(var(--inv-zoom,1));
+    transform-origin: top center;
+}
+
+.disclaimer-text[b-fn4x0jitn1] {
+    margin-right: 10px;
+}
+
+.disclaimer-close[b-fn4x0jitn1] {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    background: transparent;
+    border: 0;
+    color: #fff;
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 1;
+    opacity: 0.65
+}
+
+.disclaimer-close:hover[b-fn4x0jitn1] {
+    opacity: 1;
+}
+
+.tiny-footer[b-fn4x0jitn1] {
+    position: fixed;
+    bottom: 6px;
+    left: 8px;
+    font-size: 10px;
+    color: rgba(128, 128, 128, 0.6);
+    pointer-events: none;
+    user-select: none;
+    /* counter-zoom fix */
+    transform: scale(var(--inv-zoom, 1));
+    transform-origin: bottom left;
+}
+
+.scale-controls[b-fn4x0jitn1] {
+    position: fixed;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%) scale(var(--inv-zoom, 1));
+    transform-origin: right center;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 5000;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+/* When idle (auto-hidden by JS) */
+.scale-controls.is-idle[b-fn4x0jitn1] {
+    opacity: 0.25;
+}
+
+/* Button style */
+.scale-controls button[b-fn4x0jitn1] {
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Hover interaction */
+.scale-controls button:hover[b-fn4x0jitn1] {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1);
+}
+/* /DonutFromJson.razor.rz.scp.css */
+
+.tooltip-fixed[b-nenpfu4bxg] {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform-origin: top left;
+    transform: scale(var(--inv-zoom, 1)); /* only scale here */
+}
+
+.tooltip-inner[b-nenpfu4bxg] {
+    background: rgba(0,0,0,.8);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 20px;
+    white-space: nowrap;
+    --gap: 8px;
+    --tx: var(--gap);
+    transform: translate(var(--tx), 0); /* only translate here */
+}
+
+/* left/right decide horizontal offset */
+.tooltip-fixed.left .tooltip-inner[b-nenpfu4bxg] {
+    --tx: calc(-100% - var(--gap));
+}
+
+.tooltip-fixed.right .tooltip-inner[b-nenpfu4bxg] {
+    --tx: var(--gap);
+}
+
+
+/* ---------------- INFO BOX ---------------- */
+.info-box[b-nenpfu4bxg] {
+    position: fixed;
+    z-index: 10000;
+    width: 400px;
+    pointer-events: auto;
+    box-sizing: border-box;
+    background: transparent;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 0;
+
+    transform: scale(var(--inv-zoom, 1));
+    transform-origin: bottom right;
+}
+
+/* Placement variants */
+.info-box.tr[b-nenpfu4bxg] {
+    top: 12px;
+    right: 12px;
+    left: auto;
+    bottom: auto;
+    transform-origin: top right;
+}
+
+.info-box.tl[b-nenpfu4bxg] {
+    top: 12px;
+    left: 12px;
+    right: auto;
+    bottom: auto;
+    transform-origin: top left;
+}
+
+.info-box.br[b-nenpfu4bxg] {
+    bottom: 12px;
+    right: 12px;
+    top: auto;
+    left: auto;
+    transform-origin: bottom right;
+}
+
+.info-box.bl[b-nenpfu4bxg] {
+    bottom: 12px;
+    left: 12px;
+    top: auto;
+    right: auto;
+    transform-origin: bottom left;
+}
+
+/* Inner 3-slice skin (unchanged) */
+.ibox-top[b-nenpfu4bxg], .ibox-mid[b-nenpfu4bxg], .ibox-bot[b-nenpfu4bxg] {
+    display: block;
+    width: 100%;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-position: top left;
+}
+
+.ibox-mid[b-nenpfu4bxg] {
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+}
+
+.ibox-top[b-nenpfu4bxg] {
+    background: var(--ibox-top-image-uri) no-repeat;
+    background-size: 100% 100%;
+    height: 56px;
+    padding: 10px 14px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+}
+
+.ibox-title[b-nenpfu4bxg] {
+    text-align: center;
+    color: #000;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.ibox-mid[b-nenpfu4bxg] {
+    background: var(--ibox-middle-image-uri) repeat-y;
+    background-size: 100% 100%;
+    position: relative;
+    z-index: 1;
+    margin-top: -10px;
+    padding: 10px 14px;
+    box-sizing: border-box;
+    max-height: calc(100vh - 56px - 44px - 24px);
+    overflow: auto;
+    color: #000;
+    font-size: 1.85rem;
+}
+
+.ibox-bot[b-nenpfu4bxg] {
+    background: var(--ibox-bottom-image-uri) no-repeat;
+    background-size: 100% 100%;
+    height: 40px; /* slightly taller to fit the link */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* When an external link is present */
+.ibox-bot.has-link[b-nenpfu4bxg] {
+    height: 40px; /* expand slightly to fit link */
+}
+
+/* Link styling */
+.ibox-link[b-nenpfu4bxg] {
+    color: #007bff;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.ibox-link:hover[b-nenpfu4bxg] {
+    color: #66b2ff;
+    transform: scale(1.05);
+    text-decoration: underline;
+}
+
+
+.close-btn[b-nenpfu4bxg] {
+    position: absolute;
+    top: 0rem;
+    right: .5rem;
+    background: none;
+    border: 0;
+    font-size: 1.5rem;
+    color: #000;
+    cursor: pointer;
+}
+/* /DonutWithArcLabels.razor.rz.scp.css */
+
+/* Make the SVG fill the container as you already have */
+svg[b-ygoalvtn3e] {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Labels shouldn't block mouse events */
+.arc-label[b-ygoalvtn3e] {
+    pointer-events: none;
+}
+
+.arc-label text[b-ygoalvtn3e] {
+    fill: #fff;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+
+/* The group (path + label) scales together */
+.slice-group[b-ygoalvtn3e] {
+    transform-origin: 50% 50%;
+    transition: transform .25s ease, filter .25s ease;
+}
+
+.slice-group.interactive[b-ygoalvtn3e] {
+    cursor: pointer;
+}
+
+.slice-group.interactive:hover[b-ygoalvtn3e] {
+    transform: scale(1.03);
+    filter: brightness(1.2) drop-shadow(0 2px 3px rgba(0,0,0,.4));
+}
+
+/* The actual shape path (kept separate for styling if needed) */
+.slice-shape[b-ygoalvtn3e] {
+    pointer-events: fill;
+}
+
+/* Non-interactive slices ignore pointer events */
+.slice-group.disabled[b-ygoalvtn3e] {
+    pointer-events: none;
+}
+
+
+/* Fill the viewport and center the SVG */
+.donut-host[b-ygoalvtn3e] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background: #DFDBDA; /* optional dark backdrop */
+}
+
+/* Keep the chart square and responsive */
+.donut-host > svg[b-ygoalvtn3e] {
+    width: 100vmin;
+    height: 100vmin;
+    display: block;
+}
+
+/* Curved labels on the rings */
+.arc-label text[b-ygoalvtn3e] {
+    fill: rgba(0,0,0,.4); /*#ffffff*/
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+
+/* Center title styling (sizes come from component params) */
+.hub-title text[b-ygoalvtn3e]{
+  text-anchor: middle;
+  dominant-baseline: middle;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+
+.hub-title-line1[b-ygoalvtn3e] {
+}
+
+.hub-title-line2[b-ygoalvtn3e] {
+}
+
+.hub-title-line3[b-ygoalvtn3e] {
+}
+
+/* Slice visuals & interactions */
+.slice[b-ygoalvtn3e] {
+    transform-origin: 50% 50%;
+    transition: transform .25s ease, filter .25s ease;
+}
+
+.slice.interactive[b-ygoalvtn3e] {
+    cursor: pointer;
+}
+
+.slice.interactive:hover[b-ygoalvtn3e] {
+    filter: brightness(1.2) drop-shadow(0 2px 3px rgba(0,0,0,.4));
+    transform: scale(1.03);
+}
+
+.slice.disabled[b-ygoalvtn3e] {
+    pointer-events: none;
+}
+
+/* Optional: style outside-band labels if desired */
+.band-label text[b-ygoalvtn3e] {
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,.35);
+}
+.badge-text[b-ygoalvtn3e] {
+    font-size: 6px;
+    font-weight: 600;
+    fill: rgba(0,0,0,.4); /*rgba(0,0,0,.25)*/
+}
+
+.badge circle[b-ygoalvtn3e] {
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,.25));
+}
+
+
+.center-gif[b-ygoalvtn3e] {
+    transform-origin: center bottom;
+    /*animation: wobble 2.8s ease-in-out infinite;*/
+}
+
+@keyframes wobble-b-ygoalvtn3e {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(2deg);
+    }
+    /* swing right */
+    50% {
+        transform: rotate(0deg);
+    }
+    /* back to center */
+    80% {
+        transform: rotate(-2deg);
+    }
+    /* swing left */
+    100% {
+        transform: rotate(0deg);
+    }
+    /* return center */
+}
+
+
+
+@keyframes ask_me_bell_ring-b-ygoalvtn3e {
+  0%   { transform: rotate(0deg) scale(1); }
+  10%  { transform: rotate(1.5deg) scale(1.01); }
+  20%  { transform: rotate(-1.5deg) scale(1.01); }
+  30%  { transform: rotate(1deg) scale(1.005); }
+  40%  { transform: rotate(-1deg) scale(1.005); }
+  50%  { transform: rotate(0.5deg) scale(1.002); }
+  70%,100% { transform: rotate(0deg) scale(1); }
+}
+
+.ask_me_ringing[b-ygoalvtn3e] {
+    transform-origin: top center;
+    animation: ask_me_bell_ring-b-ygoalvtn3e 4.0s ease-in-out infinite;
+}
+
+.center-arc-text text[b-ygoalvtn3e] {
+    font-weight: 700; /* bold */
+    letter-spacing: 1.2px;
+}
+
+/* Simple fade-in effect */
+@keyframes fadeInVideo-b-ygoalvtn3e {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes seg-reveal-b-ygoalvtn3e {
+    0% {
+        opacity: 0;
+        transform: scale(0.94);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.03);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.slice-group.reveal[b-ygoalvtn3e] {
+    opacity: 0;
+    animation: seg-reveal-b-ygoalvtn3e var(--revDur,600ms) cubic-bezier(.2,.8,.3,1) forwards;
+    animation-delay: var(--revDelay,0ms);
+}
+
+.touch-rotate[b-ygoalvtn3e] {
+    /*touch-action: none;*/ /* block browser zoom/scroll on this element */
+    overscroll-behavior: contain; /* stop page bounce/scroll chaining */
+}
+
+/* /Index.razor.rz.scp.css */
+:root[b-xrbow302sr] {
+    --scene-scale: 1;
+    --scene-offset-y: 0px;
+}
+
+.scene-scale[b-xrbow302sr] {
+    transform: translateY(var(--scene-offset-y)) scale(var(--scene-scale));
+    transform-origin: top center;
+    transition: transform .25s ease;
+}
+
+.scale-controls[b-xrbow302sr] {
+    position: fixed;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%) scale(var(--inv-zoom,1));
+    transform-origin: right center;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 5000;
+}
+
+.scale-controls button[disabled][b-xrbow302sr] {
+    opacity: .35;
+    cursor: not-allowed;
+}
