@@ -1,0 +1,72 @@
+[
+  {
+    "Label1": "Definition",
+    "Label2": "",
+    "Label3": "",
+    "Title": "Drug Absorption",
+    "Tooltip": "See the definition here...",
+    "Description": "Absorption describes how a drug enters the bloodstream from its administration site, influenced by formulation, route, and physiological barriers like membranes.",
+    "Value": 1.0,
+    "ColorStart": "#ADC5D9",
+    "ColorEnd": "#C2DCF2",
+    "ExternalLink": "https://bpspubs.onlinelibrary.wiley.com/doi/epdf/10.1111/bph.16222",
+    "CentreAvatarImage": "",
+    "AudioUrl": ""
+  },
+  {
+    "Label1": "VR",
+    "Label2": "",
+    "Label3": "animation",
+    "Title": "Drug Distribution",
+    "Tooltip": "Watch how drugs travel through the body",
+    "Description": "This video explains how drugs are absorbed, distributed, metabolized, and eliminated — tracing their entire journey through the body.",
+    "Value": 1.0,
+    "ColorStart": "#ADC5D9",
+    "ColorEnd": "#C2DCF2",
+    "ExternalLink": "https://youtu.be/s2yptsPIxa8",
+    "CentreAvatarImage": "Pharmie_with_QuestVR.png",
+    "AudioUrl": ""
+  },
+  {
+    "Label1": "Video",
+    "Label2": "",
+    "Label3": "lecture",
+    "Title": "Drug Metabolism",
+    "Tooltip": "Learn how drugs enter your bloodstream",
+    "Description": "Metabolism transforms the parent compound into metabolites via enzymes, mainly in the liver, altering activity and facilitating excretion.",
+    "Value": 1.0,
+    "ColorStart": "#ADC5D9",
+    "ColorEnd": "#C2DCF2",
+    "ExternalLink": "https://vimeo.com/469314952",
+    "CentreAvatarImage": "",
+    "AudioUrl": ""
+  },
+  {
+    "Label1": "Podcast",
+    "Label2": "",
+    "Label3": "",
+    "Title": "Drug Absorption",
+    "Tooltip": "Hear the story — from pill to plasma",
+    "Description": "Click play to start the audio...",
+    "Value": 1.0,
+    "ColorStart": "#ADC5D9",
+    "ColorEnd": "#C2DCF2",
+    "ExternalLink": "",
+    "CentreAvatarImage": "",
+    "AudioUrl": "audio/podkast_drug_absorption.m4a"
+  },
+  {
+    "Label1": "Quiz",
+    "Label2": "",
+    "Label3": "",
+    "Title": "Quiz",
+    "Tooltip": "Here to test your knowledge.",
+    "Description": "We will have the quiz ready soon!",
+    "Value": 1.0,
+    "ColorStart": "#ADC5D9",
+    "ColorEnd": "#C2DCF2",
+    "ExternalLink": "",
+    "CentreAvatarImage": "",
+    "AudioUrl": ""
+  }
+]

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width,
+                 initial-scale=1,
+                 maximum-scale=1,
+                 user-scalable=no" />
+    <title>Pharmacoeducation</title>
+    <base href="/pharma-trial/" />
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="icon" type="image/png" href="pharmie_favIcon_2.png" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link href="BlazorAppWasm.styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="app">
+        <div class="loading-progress" aria-live="polite">
+            <svg viewBox="0 0 50 50">
+                <circle cx="25" cy="25" r="20"></circle>
+            </svg>
+            <div>Loading…</div>
+        </div>
+    </div>
+
+	<div id="blazor-error-ui">
+		An unhandled error has occurred.
+		<a href="." class="reload">Reload</a>
+		<span class="dismiss">🗙</span>
+	</div>
+	<script src="audioBar.js"></script>
+	<script src="pharmAudio.js"></script>
+	<script type="module" src="sceneScale.js"></script>
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+<script>
+    function setZoomVars() {
+        const z = window.devicePixelRatio || 1;
+        document.documentElement.style.setProperty('--inv-zoom', (1 / z).toString());
+    }
+    setZoomVars();
+    addEventListener('resize', setZoomVars);
+    addEventListener('orientationchange', setZoomVars);
+</script>
+</html>
