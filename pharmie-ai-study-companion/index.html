@@ -30,14 +30,22 @@
       cursor:pointer;
     }
 
-    /* OPTION A: responsive container */
+    /* Responsive 16:9 container */
     #container{
       width: min(1300px, 100vw);
-      height: min(780px, calc(100vh - 110px)); /* buttons + padding */
+      aspect-ratio: 16 / 9;
       background:#0f0f0f;
       box-shadow:0 8px 24px rgba(0,0,0,0.25);
       position:relative;
       z-index:1;
+    }
+
+    /* Constrain height to viewport */
+    @media (max-height: 780px) {
+      #container{
+        height: calc(100vh - 110px); /* controls + padding */
+        width: auto;
+      }
     }
 
     iframe{
@@ -45,6 +53,7 @@
       height:100%;
       border:0;
       display:block;
+      background:#000;
     }
   </style>
 </head>
