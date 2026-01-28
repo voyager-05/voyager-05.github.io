@@ -1,46 +1,125 @@
-<div id="stage">
-  <div id="container">
-    <iframe id="frame" src="/pharmie-ai-socratic/" title="AI Pharmie" allow="autoplay; fullscreen"></iframe>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>AI Pharmie</title>
+  <style>
+    html, body { width:100%; height:100%; margin:0; }
+
+    body{
+      font-family:system-ui;
+      background:#000;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      padding:16px;
+      box-sizing:border-box;
+    }
+
+    #controls{
+      position:relative;
+      z-index:10;
+      margin-bottom:14px;
+      text-align:center;
+    }
+
+    #controls button{
+      padding:8px 14px;
+      margin:4px;
+      cursor:pointer;
+    }
+
+    /* Center the scaled stage */
+    #stage{
+      width:100%;
+      display:flex;
+      justify-content:center;
+    }
+
+    /* “Native” Unity viewport size in CSS pixels */
+    #container{
+      width:1280px;
+      height:720px;
+      background:#0f0f0f;
+      box-shadow:0 8px 24px rgba(0,0,0,0.25);
+      transform-origin: top center;
+      will-change: transform;
+    }
+
+    iframe{
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+      background:#000;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="controls">
+    <button onclick="loadUnity('A')">Socratic Method</button>
+    <button onclick="loadUnity('B')">Adaptive Mastery</button>
+    <button onclick="loadUnity('C')">Retrieval Practise</button>
+    <button onclick="unloadUnity()">Unload</button>
   </div>
-</div>
 
-<style>
-  #stage{
-    width:100%;
-    display:flex;
-    justify-content:center;
-  }
+  <div id="stage">
+    <div id="container">
+      <iframe
+        id="frame"
+        src="/pharmie-ai-socratic/"
+        title="AI Pharmie"
+        allow="autoplay; fullscreen">
+      </iframe>
+    </div>
+  </div>
 
-  /* The “native” size you want */
-  #container{
-    width:1280px;
-    height:720px;
-    background:#0f0f0f;
-    box-shadow:0 8px 24px rgba(0,0,0,0.25);
-    transform-origin: top center;
-  }
+  <script>
+    const URLS = {
+      A: "/pharmie-ai-socratic/",
+      B: "/pharmie-ai-adaptive-mastery/",
+      C: "/pharmie-ai-retrieval-practise/"
+    };
 
-  #container iframe{
-    width:100%;
-    height:100%;
-    border:0;
-    display:block;
-    background:#000;
-  }
-</style>
-
-<script>
-  function fit1280x720() {
+    const frame = document.getElementById("frame");
+    const container = document.getElementById("container");
     const controls = document.getElementById("controls");
-    const controlsH = controls ? controls.getBoundingClientRect().height : 0;
 
-    const availW = window.innerWidth - 32;               // padding budget
-    const availH = window.innerHeight - controlsH - 32;  // padding budget
+    const BASE_W = 1280;
+    const BASE_H = 720;
 
-    const s = Math.min(availW / 1280, availH / 720, 1);  // only shrink, never enlarge
-    document.getElementById("container").style.transform = `scale(${s})`;
-  }
+    function fit1280x720() {
+      // Space available after controls + page padding
+      const paddingBudget = 32; // body padding top+bottom-ish buffer
+      const controlsH = controls.getBoundingClientRect().height;
 
-  window.addEventListener("resize", fit1280x720);
-  window.addEventListener("load", fit1280x720);
-</script>
+      const availW = window.innerWidth  - paddingBudget;
+      const availH = window.innerHeight - controlsH - paddingBudget - 14; // 14px margin-bottom
+
+      // Only shrink if needed (never scale above 1)
+      const s = Math.min(availW / BASE_W, availH / BASE_H, 1);
+      container.style.transform = `scale(${s})`;
+    }
+
+    function loadUnity(key) {
+      frame.src = URLS[key];
+      // Re-fit after the iframe navigates (some browsers/layouts change heights)
+      setTimeout(fit1280x720, 50);
+    }
+
+    function unloadUnity() {
+      frame.src = "about:blank";
+      setTimeout(fit1280x720, 50);
+    }
+
+    window.addEventListener("resize", fit1280x720);
+    window.addEventListener("load", fit1280x720);
+
+    // Initial fit
+    fit1280x720();
+  </script>
+
+</body>
+</html>
