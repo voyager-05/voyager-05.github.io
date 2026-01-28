@@ -13,41 +13,31 @@
       flex-direction:column;
       align-items:center;
       justify-content:flex-start;
-      padding:16px;
+      padding:16px 0 0;
       box-sizing:border-box;
     }
 
     #controls{
+      position:relative;
       z-index:10;
       margin-bottom:14px;
       text-align:center;
     }
+
     #controls button{
       padding:8px 14px;
       margin:4px;
       cursor:pointer;
     }
 
-    /* Always fit: constrained by viewport AND 16:9 */
+    /* OPTION B: aspect-ratio locked, responsive width */
     #container{
-      --gap: 32px;        /* body padding total left+right (16+16) */
-      --topUI: 110px;     /* controls + margins + padding (tweak if needed) */
-
-      aspect-ratio: 16 / 9;
-
-      /* Width must fit:
-         1) max design width (1300)
-         2) viewport width minus padding
-         3) viewport height (minus UI) converted to 16:9 width
-      */
-      width: min(
-        1300px,
-        calc(100vw - var(--gap)),
-        calc((100vh - var(--topUI)) * 16 / 9)
-      );
-
+      width: min(1300px, 100vw);
+      aspect-ratio: 16 / 9;        /* fixed ratio */
       background:#0f0f0f;
       box-shadow:0 8px 24px rgba(0,0,0,0.25);
+      position:relative;
+      z-index:1;
     }
 
     iframe{
