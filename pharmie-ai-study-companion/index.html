@@ -2,30 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AI Pharmie</title>
   <style>
     html, body { height:100%; margin:0; background:#000; }
-    body { font-family: system-ui; }
+
+    body{
+      font-family:system-ui;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+      padding:16px;
+      box-sizing:border-box;
+    }
 
     #controls{
-      padding:16px;
       text-align:center;
     }
+
     #controls button{
       padding:8px 14px;
       margin:4px;
       cursor:pointer;
     }
 
-    /* itch-style: responsive player area with aspect ratio */
+    /* itch-style player: responsive + aspect ratio + contained */
     .player{
-      width: min(1280px, 100vw);
+      width: min(1280px, calc(100vw - 32px));
       aspect-ratio: 16 / 9;
-      margin: 0 auto 16px;
+
       background:#111;
       box-shadow:0 8px 24px rgba(0,0,0,0.25);
-      border-radius: 8px;
-      overflow:hidden; /* keeps it clean like itch */
+      border-radius: 10px;
+      overflow:hidden; /* important: clean edges like itch */
     }
 
     .player iframe{
@@ -36,12 +46,11 @@
       background:#000;
     }
 
-    /* If viewport is short, constrain height and let width follow */
+    /* If viewport is short, size by height and keep 16:9 */
     @media (max-height: 820px){
       .player{
-        height: calc(100vh - 120px);
-        width: auto;
-        aspect-ratio: 16 / 9;
+        height: calc(100vh - 140px); /* buttons + padding */
+        width: auto;                 /* width derived from aspect-ratio */
       }
     }
   </style>
@@ -56,7 +65,13 @@
   </div>
 
   <div class="player">
-    <iframe id="frame" src="/pharmie-ai-socratic/" allow="autoplay; fullscreen"></iframe>
+    <iframe
+      id="frame"
+      src="/pharmie-ai-socratic/"
+      title="AI Pharmie"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
   </div>
 
   <script>
@@ -65,11 +80,17 @@
       B: "/pharmie-ai-adaptive-mastery/",
       C: "/pharmie-ai-retrieval-practise/"
     };
+
     const frame = document.getElementById("frame");
-    function loadUnity(key){ frame.src = URLS[key]; }
-    function unloadUnity(){ frame.src = "about:blank"; }
+
+    function loadUnity(key){
+      frame.src = URLS[key];
+    }
+
+    function unloadUnity(){
+      frame.src = "about:blank";
+    }
   </script>
 
 </body>
 </html>
- 
