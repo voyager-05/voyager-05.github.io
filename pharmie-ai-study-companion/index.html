@@ -15,6 +15,7 @@
       justify-content:flex-start;
       padding:16px;
       box-sizing:border-box;
+      overflow-x:hidden; /* avoid page-level horizontal scroll */
     }
 
     #controls{
@@ -35,6 +36,7 @@
       width:100%;
       display:flex;
       justify-content:center;
+      overflow:visible;           /* KEY: don't clip transformed content */
     }
 
     /* “Native” Unity viewport size in CSS pixels */
@@ -43,8 +45,8 @@
       height:720px;
       background:#0f0f0f;
       box-shadow:0 8px 24px rgba(0,0,0,0.25);
-      transform-origin: top center;
-      will-change: transform;
+      transform-origin:center center; /* KEY: scale from center */
+      will-change:transform;
     }
 
     iframe{
@@ -91,21 +93,22 @@
     const BASE_H = 720;
 
     function fit1280x720() {
-      // Space available after controls + page padding
-      const paddingBudget = 32; // body padding top+bottom-ish buffer
+      // Available space for the scaled content
+      const pagePadding = 32; // body padding left+right (16+16) and a small buffer
       const controlsH = controls.getBoundingClientRect().height;
 
-      const availW = window.innerWidth  - paddingBudget;
-      const availH = window.innerHeight - controlsH - paddingBudget - 14; // 14px margin-bottom
+      const availW = window.innerWidth  - pagePadding;
+      const availH = window.innerHeight - controlsH - pagePadding - 14; // 14px controls margin-bottom
 
-      // Only shrink if needed (never scale above 1)
+      // Only shrink when needed (never enlarge)
       const s = Math.min(availW / BASE_W, availH / BASE_H, 1);
+
       container.style.transform = `scale(${s})`;
     }
 
     function loadUnity(key) {
       frame.src = URLS[key];
-      // Re-fit after the iframe navigates (some browsers/layouts change heights)
+      // Re-fit after navigation/layout settles
       setTimeout(fit1280x720, 50);
     }
 
