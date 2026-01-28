@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AI Pharmie</title>
   <style>
     html, body { width:100%; height:100%; margin:0; }
@@ -30,26 +31,18 @@
       cursor:pointer;
     }
 
-    /* Responsive 16:9 container */
+    /* responsive 16:9 container; height is set by JS via --availH */
     #container{
-      height: calc(100vh - 140px); /* viewport minus controls + padding */
+      height: var(--availH, 70vh);
       aspect-ratio: 16 / 9;
-    
-      max-width: 1300px;          /* cap width */
-      width: auto;                /* let height drive width */
-    
+
+      max-width: 1300px;
+      width: auto; /* width derived from height because of aspect-ratio */
+
       background:#0f0f0f;
       box-shadow:0 8px 24px rgba(0,0,0,0.25);
       position:relative;
       z-index:1;
-    }
-
-    /* Constrain height to viewport */
-    @media (max-height: 850px) {
-      #container{
-        height: calc(100vh - 110px); /* controls + padding */
-        width: auto;
-      }
     }
 
     iframe{
@@ -75,7 +68,8 @@
       id="frame"
       src="/pharmie-ai-socratic/"
       title="AI Pharmie"
-      allow="autoplay; fullscreen">
+      allow="autoplay; fullscreen"
+      allowfullscreen>
     </iframe>
   </div>
 
@@ -87,8 +81,38 @@
     };
 
     const frame = document.getElementById("frame");
+    const controls = document.getElementById("controls");
+    const container = document.getElementById("container");
+
     function loadUnity(key){ frame.src = URLS[key]; }
     function unloadUnity(){ frame.src = "about:blank"; }
+
+    function layout() {
+      // Use visualViewport when available (best under zoom/mobile)
+      const vv = window.visualViewport;
+      const viewportH = vv ? vv.height : window.innerHeight;
+
+      const controlsH = controls.getBoundingClientRect().height;
+      const bodyTopPadding = 16;
+      const controlsMarginBottom = 14;
+      const safety = 12; // small buffer to avoid overflow at odd zoom levels
+
+      const availH = Math.max(
+        240, // minimum usable height
+        viewportH - bodyTopPadding - controlsH - controlsMarginBottom - safety
+      );
+
+      container.style.setProperty("--availH", `${availH}px`);
+    }
+
+    window.addEventListener("resize", layout);
+    window.addEventListener("load", layout);
+    if (window.visualViewport) window.visualViewport.addEventListener("resize", layout);
+
+    // Re-run after buttons wrap onto a second line at higher scaling
+    new ResizeObserver(layout).observe(controls);
+
+    layout();
   </script>
 
 </body>
