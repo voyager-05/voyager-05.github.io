@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!-- v2 03-02-2026 12:24 -->
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -45,7 +46,10 @@
       box-shadow:0 8px 24px rgba(0,0,0,0.25);
       position:relative;
       z-index:1;
-      overflow:hidden; /* clip anything that escapes */
+
+      overflow:hidden;            /* clip anything that escapes */
+      box-sizing:border-box;      /* IMPORTANT */
+      padding: 0 2px;             /* FIX: tiny gutter prevents 1px crop */
     }
 
     iframe{
@@ -98,7 +102,6 @@
       frame.src = "about:blank";
     }
 
-    // Make container always use the remaining visible height (handles 125/150/200% scaling)
     function layout() {
       const vv = window.visualViewport;
       const viewportH = vv ? vv.height : window.innerHeight;
@@ -116,13 +119,11 @@
       container.style.setProperty("--availH", `${availH}px`);
     }
 
-    // Patch the Unity page INSIDE the iframe so it fits and stops creating scrollbars
     function patchIframeContent() {
       try {
         const doc = frame.contentDocument || frame.contentWindow.document;
         if (!doc) return;
 
-        // Inject CSS to force the Unity canvas/page to fit the iframe
         const style = doc.createElement("style");
         style.textContent = `
           html, body {
@@ -138,7 +139,6 @@
             height: 100% !important;
             display: block !important;
           }
-          /* common Unity wrappers */
           #unity-container, #unity-canvas, #unity-build, .unity-desktop, .webgl-content {
             width: 100% !important;
             height: 100% !important;
@@ -146,15 +146,12 @@
           }
         `;
         doc.head.appendChild(style);
-      } catch (e) {
-        // If any build ends up cross-origin, this will fail safely.
-      }
+      } catch (e) {}
     }
 
     frame.addEventListener("load", () => {
       layout();
       patchIframeContent();
-      // run again shortly after Unity scripts apply inline sizes
       setTimeout(patchIframeContent, 250);
       setTimeout(patchIframeContent, 1000);
     });
