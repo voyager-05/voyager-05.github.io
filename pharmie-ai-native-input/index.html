@@ -49,33 +49,34 @@
       var v = "1.0"; // bump this each build
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/NativeInput_WebGL.loader.js?v=" + v;
+
       var config = {
         arguments: [],
-        dataUrl:       buildUrl + "/NativeInput_WebGL.data.unityweb?v=" + v,
-        frameworkUrl:  buildUrl + "/NativeInput_WebGL.framework.js.unityweb?v=" + v,
-        codeUrl:       buildUrl + "/NativeInput_WebGL.wasm.unityweb?v=" + v,
+        dataUrl:            buildUrl + "/NativeInput_WebGL.data.unityweb?v=" + v,
+        frameworkUrl:       buildUrl + "/NativeInput_WebGL.framework.js.unityweb?v=" + v,
+        codeUrl:            buildUrl + "/NativeInput_WebGL.wasm.unityweb?v=" + v,
         streamingAssetsUrl: "StreamingAssets",
-        companyName: "DefaultCompany",
-        productName: "_source",
-        productVersion: "1.0",
-        showBanner: unityShowBanner,
+        companyName:        "DefaultCompany",
+        productName:        "_source",
+        productVersion:     "1.0",
+        showBanner:         unityShowBanner,
       };
 
       // --- Mobile detection (includes iPadOS desktop mode) ---
       var ua = navigator.userAgent;
-      var isLegacyMobile = /iPhone|iPad|iPod|Android/i.test(ua);
+      var isLegacyMobile   = /iPhone|iPad|iPod|Android/i.test(ua);
       var isIPadDesktopMode = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1;
       var isMobile = isLegacyMobile || isIPadDesktopMode;
 
       if (isMobile) {
         var meta = document.createElement('meta');
-        meta.name = 'viewport';
+        meta.name    = 'viewport';
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
         document.getElementsByTagName('head')[0].appendChild(meta);
         document.querySelector("#unity-container").className = "unity-mobile";
         canvas.className = "unity-mobile";
       } else {
-        canvas.style.width = "960px";
+        canvas.style.width  = "960px";
         canvas.style.height = "600px";
       }
 
@@ -87,17 +88,26 @@
         createUnityInstance(canvas, config, (progress) => {
           document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
         }).then((unityInstance) => {
+
+          // --- Expose SendMessage globally so jslib can call it ---
+          // Unity 2021+ no longer exposes SendMessage as a global.
+          // The jslib uses SendMessage(...) directly, so we patch it
+          // onto window here once the instance is ready.
+          window.unityInstance = unityInstance;
+          window.SendMessage   = function(objectName, methodName, value) {
+            unityInstance.SendMessage(objectName, methodName, value);
+          };
+
           document.querySelector("#unity-loading-bar").style.display = "none";
           document.querySelector("#unity-fullscreen-button").onclick = () => {
             unityInstance.SetFullscreen(1);
           };
+
         }).catch((message) => {
           alert(message);
         });
       };
-
       document.body.appendChild(script);
-
     </script>
   </body>
 </html>
