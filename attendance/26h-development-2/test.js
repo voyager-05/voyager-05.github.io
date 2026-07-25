@@ -1,4 +1,4 @@
-const sheetID='1pHWVwhAJyOLu1JAjA0Hq8ztie20v_hIAGIgvm5dYa40';
+const sheetID='1JSjqrH2QGnOwns5hOsWQaYgppDRjWzmP05ZZCUqVVnY';
 const base = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?`;
 const sheetName = '26H - Development 2 Attendance_Register';
 
@@ -12,7 +12,7 @@ function init() {
 
     if (document.getElementById("sID").value.length == 0)
     {
-        console.log("UUUUUUU");
+        console.log("WWWWWWWWW");
         return;
     }
 
