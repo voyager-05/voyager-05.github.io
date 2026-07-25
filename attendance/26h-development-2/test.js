@@ -1,6 +1,6 @@
 const sheetID='1JSjqrH2QGnOwns5hOsWQaYgppDRjWzmP05ZZCUqVVnY';
 const base = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?`;
-const sheetName = '26H - ML_AI Attendance_Register';
+const sheetName = '25H - ML_AI Attendance_Register';
 
 document.addEventListener('DOMContentLoaded', init);
  
@@ -12,7 +12,7 @@ function init() {
 
     if (document.getElementById("sID").value.length == 0)
     {
-        console.log("ZZZZZZZ");
+        console.log("AAAAAAAA");
         return;
     }
 
