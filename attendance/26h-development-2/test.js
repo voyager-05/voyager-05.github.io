@@ -1,6 +1,6 @@
 const sheetID='1IA1NSvOId2YyyJzrM3gokJwggBEqb2dnUX66JxUFwL0';
 const base = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?`;
-const sheetName = 'Copy of 26H - Development 2 Attendance_Register-';
+const sheetName = '26H - Development 2 Attendance_Register-';
 
 document.addEventListener('DOMContentLoaded', init);
  
@@ -12,7 +12,7 @@ function init() {
 
     if (document.getElementById("sID").value.length == 0)
     {
-        console.log("KKKKKK");
+        console.log("LLLLL");
         return;
     }
 
