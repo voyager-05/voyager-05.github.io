@@ -1,6 +1,6 @@
-const sheetID='1IA1NSvOId2YyyJzrM3gokJwggBEqb2dnUX66JxUFwL0';
+const sheetID='1JSjqrH2QGnOwns5hOsWQaYgppDRjWzmP05ZZCUqVVnY';
 const base = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?`;
-const sheetName = '26H - Development-2-Attendance_Sheet-';
+const sheetName = '26H - Development 2 Attendance_Register';
 
 document.addEventListener('DOMContentLoaded', init);
  
